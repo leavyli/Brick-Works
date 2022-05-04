@@ -1,0 +1,16 @@
+name: Call a reusable workflow
+
+on:
+  # [push, pull_request]
+  # pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-workflow-passing-data:
+    uses: leavyli/Brick-Works/.github/workflows/workflow-A.yml@reuse-workflow-A
+    # with:
+    #   username: leavyli
+    # secrets:
+    #   token: ${{ secrets.TOKEN }}
