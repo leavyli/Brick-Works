@@ -2,7 +2,7 @@ package com.example.jdkproxydemo.proxy;
 
 import com.example.jdkproxydemo.annotations.TransactionalService;
 import com.example.jdkproxydemo.handlers.MyTransactionInvocationHandler;
-import org.reflections.Reflections;
+import com.example.jdkproxydemo.utilities.ClassScanner;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
@@ -16,9 +16,8 @@ public class ProxyFactory {
     private List<MyCustomProxy> beanRegistry;
 
     public ProxyFactory(Package packageToLookup) {
-        Reflections reflections = new Reflections(packageToLookup.getName());
         //获取所有带有@TransactionalService注解的类
-        Set<Class<?>> transctionalServiceClasses = reflections.getTypesAnnotatedWith(TransactionalService.class);
+        Set<Class<?>> transctionalServiceClasses = ClassScanner.findAllAnnotatedClassesInPackage(packageToLookup.getName(), TransactionalService.class);
 
         List<?> beans = instantiateBeans(transctionalServiceClasses);
         beanRegistry = createProxiex(beans);
@@ -74,9 +73,9 @@ public class ProxyFactory {
     }
 
     /**
-     * 获取对应类的实例
+     *
      * @param clazz
-     * @return T
+     * @return 对应的类的实例
      */
     public <T> T getBean(Class<T> clazz) {
         Object proxy = beanRegistry.stream()
