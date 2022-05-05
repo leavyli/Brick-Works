@@ -6,11 +6,6 @@ import com.example.jdkproxydemo.service.Seekable;
 
 import java.io.File;
 
-/**
- * @author: saino
- * @Description:
- * @date: 2022/5/5 20:31
- */
 public class ProxyApp {
     public static void main(String[] args) {
         ProxyFactory proxyFactory = new ProxyFactory(ProxyApp.class.getPackage());

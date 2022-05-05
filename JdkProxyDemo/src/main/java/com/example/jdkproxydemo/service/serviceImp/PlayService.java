@@ -7,11 +7,6 @@ import com.example.jdkproxydemo.service.Seekable;
 
 import java.io.File;
 
-/**
- * @author: saino
- * @Description:
- * @date:2022/5/5 13:49
- */
 @TransactionalService
 public class PlayService implements Playable, Seekable {
     @Override

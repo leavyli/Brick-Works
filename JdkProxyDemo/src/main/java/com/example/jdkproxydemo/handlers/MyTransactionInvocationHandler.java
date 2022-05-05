@@ -8,11 +8,6 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Optional;
 
-/**
- * @author: saino
- * @Description:
- * @date:2022/5/5 13:59
- */
 public class MyTransactionInvocationHandler implements InvocationHandler {
     public Object target;
     private final Class<?> targetClass;
@@ -32,22 +27,26 @@ public class MyTransactionInvocationHandler implements InvocationHandler {
     }
 
     private Object handleTransactionalMethod(Method method, Object[] args, MyCustomTransaction annotation) {
-        System.out.println(String.format("Opening transaction [%s] with params %s", annotation.value(), Arrays.toString(args)));
+        System.out.printf("Opening transaction [%s] with params %s%n", annotation.value(), Arrays.toString(args));
 
-        Object result = null;
+        Object result;
         result = uncheckInvoke(method, args);
 
-        System.out.println(String.format("Committing transaction %s...", annotation.value()));
+        System.out.printf("Committing transaction %s...%n", annotation.value());
 
         return result;
     }
 
+    /**
+     * 调用target实例的对应方法
+     * @param method 方法
+     * @param args 方法对应的参数
+     * @return
+     */
     private Object uncheckInvoke(Method method, Object[] args) {
         try {
             return method.invoke(target, args);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
 
