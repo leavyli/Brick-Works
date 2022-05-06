@@ -8,8 +8,10 @@ on:
       - main
 
 jobs:
-  call-workflow-passing-data:
-    uses: leavyli/Brick-Works/.github/workflows/workflow-A.yml@reuse-workflow-A
+  # call-workflow-passing-data:
+  #   uses: leavyli/Brick-Works/.github/workflows/workflow-A.yml@reuse-workflow-A
+  Hands-on-ci-cd-for-springboot-apps:
+    uses: leavyli/Brick-Works/Hands-on-ci-cd-for-springboot-apps/github-workflow.yml@main
     # with:
     #   username: leavyli
     # secrets:
