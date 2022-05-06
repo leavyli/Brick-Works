@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - Hands-on-ci-cd-for-springboot-apps/**
 jobs:
   #Test's job
   tests:
