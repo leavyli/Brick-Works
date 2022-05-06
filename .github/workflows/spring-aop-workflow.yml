@@ -10,7 +10,7 @@ on:
     branches:
       - main
     paths:
-      - ${{env.WORKDIR}}/**
+      - $env.WORKDIR/**
 jobs:
   #Test's job
   tests:
