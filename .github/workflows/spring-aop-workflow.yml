@@ -10,7 +10,7 @@ on:
     branches:
       - main
     paths:
-      - ./{{ env.WORKDIR }}/**
+      - spring-aop/**
 jobs:
   #Test's job
   tests:
