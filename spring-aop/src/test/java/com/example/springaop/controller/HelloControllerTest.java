@@ -18,7 +18,7 @@ class HelloControllerTest {
 
     @Test
     void hello() {
-        String result = helloController.hello();
-        assertEquals("Hi", result);
+        String result = helloController.hello("world");
+        assertEquals("Hi /hello MyCustomAnnotation", result);
     }
 }
