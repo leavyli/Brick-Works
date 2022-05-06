@@ -19,6 +19,6 @@ class HelloControllerTest {
     @Test
     void hello() {
         String result = helloController.hello();
-        assertEquals("Hi", result);
+        assertEquals("Hello", result);
     }
 }
