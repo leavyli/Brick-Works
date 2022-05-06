@@ -17,6 +17,11 @@ jobs:
     steps:
       #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
       - uses: actions/checkout@v3
+        with:
+          repository: leavyli/Brick-Works
+          path: Hands-on-ci-cd-for-springboot-apps
+          ref: main
+
       #Set up JDK 17
       - name: Set up JDK
         uses: actions/setup-java@v3
