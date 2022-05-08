@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexController implements Controller {
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        var modelview = new ModelAndView("welcome", "name", "Saino");
+        var modelview = new ModelAndView("index", "name", "Saino");
         return modelview;
     }
 }
