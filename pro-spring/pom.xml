@@ -16,6 +16,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>implementing-controller</module>
+        <module>bookstore</module>
+        <module>bind-data</module>
     </modules>
 
     <properties>
