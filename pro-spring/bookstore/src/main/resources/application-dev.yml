@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.11.9:3306/bookstore?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: example
+
+  jpa:
+    generate-ddl: true
+    show-sql: true
+
+
+
