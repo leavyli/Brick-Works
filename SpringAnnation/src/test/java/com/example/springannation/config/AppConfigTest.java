@@ -26,13 +26,13 @@ class AppConfigTest {
     }
 
     @Test
-    public void testApplicationClass() {
-        var appConfig = new AnnotationConfigApplicationContext(SpringAnnationApplication.class);
+    public void testAppconfigCustomExclude() {
+        var appConfig = new AnnotationConfigApplicationContext(AppConfig.class);
         var beanDefinitionNames= appConfig.getBeanDefinitionNames();
         log.info("beanDefinitionNames ");
         Arrays.stream(beanDefinitionNames).forEach(log::info);
+        assertThat(beanDefinitionNames).doesNotContain("customExcludeService");
+
     }
-
-
 
 }

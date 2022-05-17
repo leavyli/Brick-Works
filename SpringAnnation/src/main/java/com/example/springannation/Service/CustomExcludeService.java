@@ -1,11 +1,11 @@
 package com.example.springannation.Service;
-import org.springframework.stereotype.Component;
+
 import org.springframework.stereotype.Service;
 
 /**
  * Author saino
- * LastModify 11:13
+ * LastModify 11:42
  */
-@Component
-public class AnOtherBookService {
+@Service
+public class CustomExcludeService {
 }
