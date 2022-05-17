@@ -1,11 +1,9 @@
 package com.example.springannation.config;
 
 import com.example.springannation.config.typeFilter.MyTypeFilter;
-import org.springframework.context.annotation.ComponentScan;
+import com.example.springannation.domain.OneBean;
+import org.springframework.context.annotation.*;
 import org.springframework.context.annotation.ComponentScan.Filter;
-import org.springframework.context.annotation.ComponentScans;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
@@ -24,5 +22,10 @@ import javax.persistence.Entity;
         @ComponentScan(basePackages = "com.example.springannation.web"),
 })
 public class AppConfig {
+
+        @Bean
+        public OneBean oneBean() {
+                return new OneBean("it is me oneBean");
+        }
 
 }
