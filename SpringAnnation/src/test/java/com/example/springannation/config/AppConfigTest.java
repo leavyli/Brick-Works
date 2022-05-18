@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -17,8 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 /**
- * @author: saino
- * @date: 2022/5/17 10:46
+ * @author saino
+ * @since 2022/5/17 10:46
  */
 @SpringBootTest
 @Slf4j
@@ -57,4 +58,21 @@ class AppConfigTest {
         assertThat(oneBean).isEqualTo(newOneBean2);
     }
 
+    @Test
+    public void testAppconfig() {
+        ApplicationContextRunner contextRunner
+                = new ApplicationContextRunner();
+        contextRunner.withPropertyValues("hello.enabled=true")
+                .withUserConfiguration(HelloConditionalConfig.class)
+                .run(context -> {
+//                    Arrays.stream(context.getBeanDefinitionNames()).forEach(log::info);
+                    assertThat(context).hasBean("helloConditionalConfig");
+                });
+
+//        var appConfig = new AnnotationConfigApplicationContext(HelloConditionalConfig.class);
+//        var beanDefinitionNames= appConfig.getBeanDefinitionNames();
+//        log.info("beanDefinitionNames ");
+//        Arrays.stream(beanDefinitionNames).forEach(log::info);
+
+    }
 }
