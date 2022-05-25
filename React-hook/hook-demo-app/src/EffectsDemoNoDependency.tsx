@@ -6,7 +6,8 @@ interface ITitle {
 
 function EffectsDemoNoDependency() {
     const [title, setTitle] = useState<ITitle>({ name: 'Hello' });
-    const titleRef = useRef<HTMLInputElement>(title as HTMLInputElement);
+    var elem = document.createElement('input');
+    const titleRef = useRef<HTMLInputElement>(elem);
     useEffect(() => {
         console.log('useEffect');
         document.title = title.name;
