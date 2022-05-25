@@ -4,13 +4,15 @@ import './index.css';
 // import App from './App';
 import EffectsDemoNoDependency from './EffectsDemoNoDependency';
 import reportWebVitals from './reportWebVitals';
+import EffectsDemoTwoStates from './EffectsDemoTwoStates';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <EffectsDemoNoDependency />
+    {/* <EffectsDemoNoDependency /> */}
+    <EffectsDemoTwoStates />
   </React.StrictMode>
 );
 
