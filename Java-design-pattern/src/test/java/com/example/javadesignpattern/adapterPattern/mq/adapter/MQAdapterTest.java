@@ -1,6 +1,7 @@
 package com.example.javadesignpattern.adapterPattern.mq.adapter;
 
 import com.example.javadesignpattern.adapterPattern.mq.CreateAccount;
+import com.example.javadesignpattern.adapterPattern.mq.OrderMq;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -27,14 +28,27 @@ class MQAdapterTest {
         link01.put("bizTime", "accountDate");
         link01.put("desc", "desc");
 
-        var objectMapper =  new ObjectMapper();
-        var jsonStr = objectMapper.writeValueAsString(creatAccount);
+        var objectMapper = new ObjectMapper();
+        var rebateInfo01 = MQAdapter.filter(objectMapper.writeValueAsString(creatAccount), link01);
 
-        var rebateInfo01 = MQAdapter.filter(jsonStr, link01);
+        log.info("mq.CreatAccount适配前:{}", creatAccount);
+        log.info("mq.CreateAccount适配后:{}", rebateInfo01);
 
-        log.info("rebateInfo01:{}", rebateInfo01);
+        OrderMq orderMq = new OrderMq();
+        orderMq.setUid("100001");
+        orderMq.setSku("10928092093111123");
+        orderMq.setOrderId("100000890193847111");
+        orderMq.setCreateOrderDate(LocalDateTime.now());
+        HashMap<String, String> link02 = new HashMap<>();
+        link02.put("userId", "uid");
+        link02.put("bizId", "orderId");
+        link02.put("bizTime", "createOrderDate");
 
-        log.info("creatAccount:{}", creatAccount);
+        var rebateInfo02 = MQAdapter.filter(objectMapper.writeValueAsString(orderMq), link02);
+
+        log.info("mq.OrderMq适配前:{}", orderMq);
+        log.info("mq.OrderMq适配后:{}", rebateInfo02);
+
     }
 
 }
