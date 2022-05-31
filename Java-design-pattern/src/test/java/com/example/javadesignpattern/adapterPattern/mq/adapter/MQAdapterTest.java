@@ -70,4 +70,18 @@ class MQAdapterTest {
                 insideOrderService.isFirst("100001"));
     }
 
+    @Test
+    public void test_MQAdaterMapper() {
+        var creatAccount = new CreateAccount();
+        creatAccount.setNumber("123");
+        creatAccount.setAddress("g省");
+        creatAccount.setDesc("create account");
+        creatAccount.setAccountDate(LocalDateTime.parse("2019-03-27T10:15:30"));
+
+        var rebateInfo = MQAdapterMapper.INSTANCE.toRebeteInfo(creatAccount);
+
+        log.info("mq.CreatAccount适配前:{}", creatAccount);
+        log.info("mq.CreateAccount适配后:{}", rebateInfo);
+    }
+
 }
