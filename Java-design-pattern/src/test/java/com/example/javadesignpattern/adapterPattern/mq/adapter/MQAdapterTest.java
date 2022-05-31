@@ -2,10 +2,16 @@ package com.example.javadesignpattern.adapterPattern.mq.adapter;
 
 import com.example.javadesignpattern.adapterPattern.mq.CreateAccount;
 import com.example.javadesignpattern.adapterPattern.mq.OrderMq;
+import com.example.javadesignpattern.adapterPattern.service.InsiderOrderService;
+import com.example.javadesignpattern.adapterPattern.service.OrderService;
+import com.example.javadesignpattern.adapterPattern.service.POPOrderAdapterServiceImpl;
+import com.example.javadesignpattern.adapterPattern.service.POPOrderService;
+import com.example.javadesignpattern.adapterPattern.service.adapter.OrderAdapterService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
@@ -14,6 +20,10 @@ import java.util.HashMap;
 @SpringBootTest
 @Slf4j
 class MQAdapterTest {
+    @Autowired
+    POPOrderService popOrderService;
+    @Autowired
+    OrderService orderService;
     @Test
     public void test_MQAdater() throws JsonProcessingException {
         var creatAccount = new CreateAccount();
@@ -49,6 +59,15 @@ class MQAdapterTest {
         log.info("mq.OrderMq适配前:{}", orderMq);
         log.info("mq.OrderMq适配后:{}", rebateInfo02);
 
+    }
+    @Test
+    public void test_itfAdapter() {
+        OrderAdapterService popOrderAdapterService = new POPOrderAdapterServiceImpl(popOrderService);
+        System.out.println("判断⾸首单，接⼝口适配(POP)：" +
+                popOrderAdapterService.isFirst("100001"));
+        OrderAdapterService insideOrderService = new InsiderOrderService(orderService);
+        System.out.println("判断⾸首单，接⼝口适配(⾃自营)：" +
+                insideOrderService.isFirst("100001"));
     }
 
 }

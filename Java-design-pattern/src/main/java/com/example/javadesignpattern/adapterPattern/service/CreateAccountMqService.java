@@ -3,14 +3,15 @@ package com.example.javadesignpattern.adapterPattern.service;
 import com.example.javadesignpattern.adapterPattern.mq.CreateAccount;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 /**
  * Author saino
  * LastModify 10:18
  */
-@Slf4j
 public class CreateAccountMqService {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(CreateAccountMqService.class);
+
     public void onMessage(String message) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         CreateAccount mq = objectMapper.readValue(message, CreateAccount.class);
