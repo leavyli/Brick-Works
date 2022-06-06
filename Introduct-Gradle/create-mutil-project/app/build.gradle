@@ -1,0 +1,19 @@
+plugins {
+    id 'application'
+    id 'myproject.java-conventions.gradle'
+}
+
+version = '1.0.0'
+
+//apply plugin: GreetingPlugin
+//greeting.message = 'Hi from Gradle'
+apply plugin: AnotherGreetingPlugin
+greeting {
+    message = 'Hi'
+    greeter = 'Gradle'
+}
+
+
+application {
+    mainClass = 'com.example.Hello'
+}
