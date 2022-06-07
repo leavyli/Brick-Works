@@ -35,3 +35,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/React-hook/hook-demo-app/node_modules
