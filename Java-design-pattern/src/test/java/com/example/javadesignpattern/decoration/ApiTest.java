@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 class ApiTest {
     @Test
     public void test_LoginSsoDecorator() {
-        LoginSsoDecorator ssoDecorator = new LoginSsoDecorator();
+        LoginSsoDecorator ssoDecorator = new LoginSsoDecorator(new SsoInterceptor() {
+        });
         String request = "1successhuahua";
 
         boolean success = ssoDecorator.preHandler(request, "ewcdqwt40liuiu", "t");
