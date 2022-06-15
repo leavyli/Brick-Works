@@ -23,7 +23,7 @@ export class ProductItem {
                     onclick={this.handleAddToCart} >
                     Add To Cart
                 </button>
-                <select className="form-control-inline float-right m-1"
+                <select aria-label="label for the slect" className="form-control-inline float-right m-1"
                     onchange={this.handleQuantityChange}>
                     <option>1</option>
                     <option>2</option>
