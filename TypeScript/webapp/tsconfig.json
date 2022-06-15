@@ -1,16 +1,18 @@
 {
     "compilerOptions": {
-        "strict": true,
-        "forceConsistentCasingInFileNames": false,
-        "target": "ES2020",
+        // "strict": true,
+        "target": "es2020",
         "outDir": "./dist",
         "rootDir": "./src",
         "module": "commonjs",
         "strictNullChecks": true,
-        // "noUncheckedIndexedAccess": true,
+        "noUncheckedIndexedAccess": true,
         "sourceMap": true,
-        "lib": [
-            "ES2020"
-        ]
+        // "lib": [
+        //     "ES2020",
+        //     "dom"
+        // ],
+        "jsx": "react",
+        "jsxFactory": "createElement"
     }
 }

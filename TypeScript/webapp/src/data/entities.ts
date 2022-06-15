@@ -45,6 +45,7 @@ export class Order {
   }
 
   get total(): number {
+    console.log(`Total: ${Array.from(this.lines.values())}`);
     return Array.from(this.lines.values()).reduce(
       (total, ol) => total + ol.total,
       0

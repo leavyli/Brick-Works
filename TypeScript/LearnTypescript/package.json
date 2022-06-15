@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc-watch --onsuccess \"node dist/index.js\" && npm nodemon \"dist/index.js\" ",
+    "start": "tsc-watch --onsuccess  && npm nodemon \"dist/index.js\" ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

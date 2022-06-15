@@ -44,7 +44,7 @@ export abstract class AbstractDataSource {
   }
 
   protected async getData(): Promise<void> {
-    this._products = [];
+    // this._products = [];
     this._categories.clear();
     const rawData = await this.loadProducts();
     rawData.forEach((p) => {
