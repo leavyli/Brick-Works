@@ -35,3 +35,13 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### gradle ###
+.gradle/
+
+###mvn ###
+.mvn
+
+###npm ###
+node_modules/
+dist/
