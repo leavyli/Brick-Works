@@ -4,16 +4,18 @@ import com.example.learnspringjpa.entities.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 
-@DataJpaTest
-@Profile("test")
+@SpringBootTest(properties = "spring.profiles.active:test")
+//@DataJpaTest
+//@Profile("test")
 class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
@@ -24,6 +26,20 @@ class UserRepositoryTest {
         Assertions.assertNotNull(user);
         List<User> users = userRepository.findAll();
         Assertions.assertNotNull(users);
+    }
+
+    @Test
+    void findUserByName() {
+        userRepository.save(User.builder().name("saino").email("saino@kk.com").build());
+        userRepository.save(User.builder().name("saino").email("sino@kk.com").build());
+        userRepository.save(User.builder().name("saino").email("siano@kk.com").build());
+
+        var users = userRepository.findUserByName("saino");
+        assertThat(users, contains(
+                hasProperty("email", is("saino@kk.com")),
+                hasProperty("email", is("sino@kk.com")),
+                hasProperty("email", is("siano@kk.com"))
+        ));
     }
 
 }
