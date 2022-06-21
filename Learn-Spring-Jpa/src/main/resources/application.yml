@@ -1,17 +1,25 @@
-#spring:
-#  h2:
-#    console:
-#      enabled: true
-#  datasource:
-#    url: jdbc:h2:mem:myapp
-#    username: sa
-#    password:
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: true
-#    generate-ddl: true
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:myapp
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
 
+  config:
+    activate:
+      on-profile: test
+---
 spring:
   datasource:
     url: jdbc:mysql://root:root@192.168.11.8:3306/learn-spring-jpa
@@ -23,3 +31,6 @@ spring:
     show-sql: true
     generate-ddl: true
 
+  config:
+    activate:
+      on-profile: dev
