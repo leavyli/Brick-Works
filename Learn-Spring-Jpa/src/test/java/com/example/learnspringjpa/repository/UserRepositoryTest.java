@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 
 @SpringBootTest(properties = "spring.profiles.active:test")
+@Transactional
 class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
@@ -48,7 +50,7 @@ class UserRepositoryTest {
         userRepository.save(User.builder().name("saino2").email("sino@kk.com").build());
         userRepository.save(User.builder().name("saino3").email("siano@kk.com").build());
 
-        var user = userRepository.<User>findByQuery("saino");
+        var user = userRepository.findByQuery("saino");
 
         assertThat(user, Matchers.hasProperty("name"));
         assertThat(user, Matchers.hasProperty("email"));
