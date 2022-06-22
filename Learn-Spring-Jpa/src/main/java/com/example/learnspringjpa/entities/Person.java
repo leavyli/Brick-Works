@@ -3,22 +3,23 @@ package com.example.learnspringjpa.entities;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * Author saino
- * LastModify 6:13
+ * LastModify 12:29
  */
 @Entity
-@Table(name = "users")
 @Getter
 @Setter
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
-public class User extends AbstractBaseEntity {
+public class Person extends AbstractBaseEntity {
+
     private String name;
+    private String surname;
     private String email;
     private String phone;
+    private String address;
 
 }
