@@ -1,6 +1,7 @@
 package com.example.learnspringjpa.repository;
 
 import com.example.learnspringjpa.entities.User;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,10 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 
 @SpringBootTest(properties = "spring.profiles.active:test")
-//@DataJpaTest
-//@Profile("test")
 class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
+
 
     @Test
     public void testSave() {
@@ -42,4 +42,16 @@ class UserRepositoryTest {
         ));
     }
 
+    @Test
+    void findByQuery() {
+        userRepository.save(User.builder().name("saino").email("saino@kk.com").build());
+        userRepository.save(User.builder().name("saino2").email("sino@kk.com").build());
+        userRepository.save(User.builder().name("saino3").email("siano@kk.com").build());
+
+        var user = userRepository.<User>findByQuery("saino");
+
+        assertThat(user, Matchers.hasProperty("name"));
+        assertThat(user, Matchers.hasProperty("email"));
+        assertThat(user, Matchers.hasProperty("phone"));
+    }
 }
