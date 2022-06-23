@@ -13,8 +13,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    #    show-sql: true
     generate-ddl: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
   config:
     activate:
@@ -28,8 +33,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    #    show-sql: true
     generate-ddl: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
   config:
     activate:

@@ -3,6 +3,8 @@ package com.example.learnspringjpa.entities;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 /**
@@ -20,5 +22,7 @@ public class User extends AbstractBaseEntity {
     private String name;
     private String email;
     private String phone;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
 }
