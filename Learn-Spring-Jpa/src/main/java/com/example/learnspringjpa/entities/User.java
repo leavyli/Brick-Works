@@ -25,4 +25,5 @@ public class User extends AbstractBaseEntity {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    private String address;
 }

@@ -15,15 +15,16 @@ spring:
       ddl-auto: update
     #    show-sql: true
     generate-ddl: true
+  config:
+    activate:
+      on-profile: test
 
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
-  config:
-    activate:
-      on-profile: test
+
 ---
 spring:
   datasource:
@@ -35,12 +36,12 @@ spring:
       ddl-auto: update
     #    show-sql: true
     generate-ddl: true
+  config:
+    activate:
+      on-profile: dev
 
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
-  config:
-    activate:
-      on-profile: dev
