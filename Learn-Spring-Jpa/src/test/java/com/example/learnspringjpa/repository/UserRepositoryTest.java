@@ -32,7 +32,7 @@ class UserRepositoryTest {
 
     @Test
     void findUserByName() {
-        userRepository.save(User.builder().name("saino").email("saino@kk.com").build());
+        var u = userRepository.save(User.builder().name("saino").email("saino@kk.com").build());
         userRepository.save(User.builder().name("saino").email("sino@kk.com").build());
         userRepository.save(User.builder().name("saino").email("siano@kk.com").build());
 

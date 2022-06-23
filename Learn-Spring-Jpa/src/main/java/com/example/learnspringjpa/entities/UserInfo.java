@@ -23,4 +23,5 @@ public class UserInfo {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
 }
