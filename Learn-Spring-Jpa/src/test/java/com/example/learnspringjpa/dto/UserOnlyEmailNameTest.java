@@ -1,22 +1,30 @@
 package com.example.learnspringjpa.dto;
 
+import com.example.learnspringjpa.TruncateDatabaseBasicOnHibernateService;
 import com.example.learnspringjpa.entities.User;
 import com.example.learnspringjpa.repository.UserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.beans.HasProperty.hasProperty;
 
 @SpringBootTest(properties = "spring.profiles.active:test")
-@Transactional
 class UserOnlyEmailNameTest {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TruncateDatabaseBasicOnHibernateService truncateDatabaseBasicOnHibernateService;
+
+    @BeforeEach
+    void truncateDatabase() throws Exception {
+        truncateDatabaseBasicOnHibernateService.truncate();
+    }
+
 
     @Test
     void userOnlyEmailName() {

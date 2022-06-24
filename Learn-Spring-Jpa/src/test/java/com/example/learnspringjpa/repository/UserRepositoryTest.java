@@ -1,12 +1,13 @@
 package com.example.learnspringjpa.repository;
 
+import com.example.learnspringjpa.TruncateDatabaseBasicOnHibernateService;
 import com.example.learnspringjpa.entities.User;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,10 +17,17 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 
 @SpringBootTest(properties = "spring.profiles.active:test")
-@Transactional
 class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TruncateDatabaseBasicOnHibernateService truncateDatabaseBasicOnHibernateService;
+
+    @BeforeEach
+    void truncateDatabase() {
+        truncateDatabaseBasicOnHibernateService.truncate();
+    }
 
 
     @Test
