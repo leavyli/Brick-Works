@@ -1,7 +1,6 @@
-package com.example.learnspringjpa.repository;
+package com.example.learnspringjpa.services;
 
 import com.example.learnspringjpa.entities.AbstractBaseEntity;
-import com.example.learnspringjpa.services.AbstractBaseService;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
