@@ -20,6 +20,22 @@ class myCompartor<T> {
     }
 }
 
+class myCompartor2<T> {
+    private T o1;
+    private T o2;
+    myCompartor2(T o1, T o2) {
+        this.o1 = o1;
+        this.o2 = o2;
+    }
+    T compare(T o1, T o2) {
+        return o1;
+    }
+
+    T  getO1() {
+        return o1;
+    }
+}
+
 
 @SpringBootTest
 @Slf4j
@@ -106,6 +122,19 @@ class JavaBaseApplicationTests {
         var r = Holder.oCmp(holder1, holder2, (h1, h2) -> h1.getValue() - h2.getValue());
         log.info("r: {}", r);
 
+    }
+
+    static void testcm2(myCompartor2<? super Integer> cmp) {
+        var r = cmp.compare(1, 2);
+        var o1 = cmp.getO1();
+        log.info("r: {}, o1:{}", r, o1);
+    }
+
+    @Test
+    void test_mycmp2() {
+        var i = Integer.valueOf(2);
+        var j = Integer.valueOf(3);
+        testcm2(new myCompartor2<>(i, j));
     }
 }
 
