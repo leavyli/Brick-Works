@@ -17,7 +17,7 @@ class UserInfoTest {
     private UserRepository userRepository;
 
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisTemplate<String, UserInfo> redisTemplate;
 
     @Test
     void testUserInfoOneToOne() {
@@ -29,8 +29,10 @@ class UserInfoTest {
 
     @Test
     void testRedis() {
-        redisTemplate.opsForValue().set("key", "value");
-
+        User user = userRepository.save(User.builder().name("saino").email("kk@google.com").build());
+        UserInfo userInfo = userInfoRepository.save(UserInfo.builder().age(20).school("school").user(user).build());
+//        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer(UserInfo.class));
+        redisTemplate.opsForValue().set("userinfo", userInfo);
     }
 
 }
