@@ -1,17 +1,13 @@
 package com.example.javabase;
 
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.error.SubarraysShouldHaveSameSize;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.naming.Name;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
-
 
 
 class myCompartor<T> {
@@ -21,17 +17,19 @@ class myCompartor<T> {
 }
 
 class myCompartor2<T> {
-    private T o1;
-    private T o2;
+    private final T o1;
+    private final T o2;
+
     myCompartor2(T o1, T o2) {
         this.o1 = o1;
         this.o2 = o2;
     }
+
     T compare(T o1, T o2) {
         return o1;
     }
 
-    T  getO1() {
+    T getO1() {
         return o1;
     }
 }
@@ -40,9 +38,18 @@ class myCompartor2<T> {
 @SpringBootTest
 @Slf4j
 class JavaBaseApplicationTests {
+    static void useD(D<? extends B> d) {
+//        var box = new Box<>(123);
+//        box.setT(234);
 
-    @Test
-    void contextLoads() {
+    }
+
+    static void useMyCmp(List<? extends B> list, myCmp<? super B> cmp) {
+        var a1 = list.get(0);
+        var a2 = list.get(1);
+
+        cmp.cmpTo(a1, a2);
+        cmp.nothing(a1);
     }
 
     static <T> T max(Collection<? extends T> collection, myCompartor<? super T> comparator) {
@@ -55,7 +62,6 @@ class JavaBaseApplicationTests {
         return candidate;
     }
 
-
     static <T> void readValue(T a) {
         log.info("readValue: {}", a);
     }
@@ -64,14 +70,62 @@ class JavaBaseApplicationTests {
         return a.price - b.price;
     }
 
+    static <T extends Comparable<T>> void testcm2(myCompartor2<T> cmp) {
+//        var r = cmp.compareTo(1, 2);
+        var o1 = cmp.getO1();
+        log.info("r: {}, o1:{}", o1);
+    }
+
+    @Test
+    void testBox() {
+        Box<B> box = new Box<>(new B());
+        box.setT(new C());
+        box.hi(new C());
+    }
+
+    @Test
+    void testD() {
+        List<B> list = new ArrayList<>();
+        ArrayList<B> list2 = new ArrayList<>();
+        var a1 = new A();
+        var b1 = new B();
+        var c1 = new C();
+        list.add(b1);
+        list.add(c1);
+
+//        list2.add(a1);
+
+        List<? extends B> list3 = list;
+        list.addAll(list2);
+    }
+
+    @Test
+    void testMycmp() {
+        List<B> list = new ArrayList<>();
+        var b1 = new B();
+        var c1 = new C();
+        list.add(b1);
+        list.add(c1);
+
+        useMyCmp(list, new myCmp<A>() {
+            @Override
+            public int cmpTo(A h1, A h2) {
+                return h1.hashCode() - h2.hashCode();
+            }
+        });
+    }
+
+    @Test
+    void contextLoads() {
+    }
 
     @Test
     void test_comparable() {
 //        List<fruit> list = Arrays.asList(new apple("apple", 1), new banana("banana", 3), new orange("orange", 2));
         List<apple> list = Arrays.asList(new Jonathan("jonathan", 33), new apple("apple", 1), new apple("apple", 12), new apple("apple", 3));
-        List<Jonathan> jonathanList =Arrays.asList(new Jonathan("jonathan", 3), new Jonathan("jonathan", 331), new Jonathan("jonathan", 33));
+        List<Jonathan> jonathanList = Arrays.asList(new Jonathan("jonathan", 3), new Jonathan("jonathan", 331), new Jonathan("jonathan", 33));
 //        var  r = max(list, (a, b) -> a.price - b.price);
-        var r = JavaBaseApplicationTests.<Jonathan>max(jonathanList, new myCompartor<apple>() {
+        var r = JavaBaseApplicationTests.max(jonathanList, new myCompartor<apple>() {
             @Override
             public int compare(apple o1, apple o2) {
                 return o1.price - o2.price;
@@ -87,7 +141,6 @@ class JavaBaseApplicationTests {
         List<fruit> fruitList = Arrays.asList(new fruit("fruit", 1), new fruit("fruit", 2), new fruit("fruit", 3));
 
         List<? super apple> apples = Arrays.asList(new banana("banana", 1), new banana("banana", 2), new banana("banana", 3));
-        ;
 
         apples.add(new Jonathan("Jonathan", 1));
 
@@ -124,18 +177,69 @@ class JavaBaseApplicationTests {
 
     }
 
-    static void testcm2(myCompartor2<? super Integer> cmp) {
-        var r = cmp.compare(1, 2);
-        var o1 = cmp.getO1();
-        log.info("r: {}, o1:{}", r, o1);
-    }
-
     @Test
     void test_mycmp2() {
         var i = Integer.valueOf(2);
         var j = Integer.valueOf(3);
         testcm2(new myCompartor2<>(i, j));
     }
+
+
+    interface myCmp<T> {
+        int cmpTo(T h1, T h2);
+
+        default void nothing(T t) {
+
+        }
+    }
+
+    class Box<T extends Comparable<? super T>> {
+        private T t;
+
+        public Box(T t) {
+            this.t = t;
+        }
+
+        public <U extends T> void hi(U t) {
+            System.out.println(t);
+        }
+
+        public T getT() {
+            return t;
+        }
+
+        public void setT(T t) {
+            this.t = t;
+        }
+
+    }
+
+    class A {
+    }
+
+    class B extends A implements Comparable<A> {
+        @Override
+        public int compareTo(A o) {
+            return 0;
+        }
+    }
+
+    class C extends B {
+    }
+
+    class D<T> extends C {
+        T t;
+
+        D(T t) {
+            this.t = t;
+        }
+
+        public T getvalue() {
+            return t;
+        }
+    }
+
+
 }
 
 
