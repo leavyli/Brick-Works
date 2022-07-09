@@ -239,6 +239,16 @@ class JavaBaseApplicationTests {
         }
     }
 
+    @Test
+    void justsoso() {
+        List<? super String> list = new ArrayList<>();
+        List<?> list1 = list;
+        Object o = list;
+        if (o instanceof List<?>) {
+
+        }
+    }
+
 
 }
 
