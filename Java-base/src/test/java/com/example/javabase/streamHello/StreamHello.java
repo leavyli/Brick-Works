@@ -86,6 +86,7 @@ public class StreamHello {
         var result = numbers1.stream()
                 .flatMap((i) -> numbers2.stream().filter((j) -> (j + i) == 10).map((j) -> new PairSum<>(i, j)))
                 .collect(Collectors.toList());
+        log.info("{}", result);
         result.forEach((el) -> log.info("{}", el));
 
     }
