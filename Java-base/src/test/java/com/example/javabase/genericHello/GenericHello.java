@@ -52,4 +52,15 @@ public class GenericHello {
     void testOverloadedMethod() {
         GenericHello.<String>genericMethod("abc");
     }
+
+    @Test
+    void testStack() {
+        var statck = new Stack<Number>();
+        Integer n = 2;
+        StackAddElement(statck, n);
+    }
+
+    public static <T, R extends T> void StackAddElement(Stack<? super T> stack, R el) {
+        stack.add(el);
+    }
 }
