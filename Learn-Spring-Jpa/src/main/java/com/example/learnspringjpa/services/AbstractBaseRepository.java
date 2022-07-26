@@ -1,4 +1,4 @@
-package com.example.learnspringjpa.repository;
+package com.example.learnspringjpa.services;
 
 import com.example.learnspringjpa.entities.AbstractBaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

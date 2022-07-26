@@ -1,8 +1,6 @@
 package com.example.learnspringjpa.services;
 
 import com.example.learnspringjpa.entities.User;
-import com.example.learnspringjpa.repository.AbstractBaseRepository;
-import com.example.learnspringjpa.repository.AbstractBaseRepositoryImpl;
 import org.springframework.stereotype.Service;
 
 /**
