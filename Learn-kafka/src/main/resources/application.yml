@@ -1,0 +1,6 @@
+kafka:
+  bootstrapAddress: 192.168.11.8:9092
+
+logging:
+  level:
+    org.springframework.kafka: DEBUG

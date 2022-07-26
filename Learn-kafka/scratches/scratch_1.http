@@ -1,0 +1,11 @@
+POST http://127.0.0.1:8080/hello
+Content-Type: application/json
+
+{
+  "name": "Item 1",
+  "description": "Item 1 description",
+  "price": 1.99,
+  "quantity": 1
+}
+
+###
