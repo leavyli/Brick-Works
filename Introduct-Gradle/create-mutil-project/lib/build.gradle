@@ -1,0 +1,12 @@
+plugins {
+    id 'application'
+}
+
+copy {
+    into "$buildDir/tmp"
+    from 'custom-resources'
+}
+
+application {
+    mainClass = 'com.example.Hello'
+}

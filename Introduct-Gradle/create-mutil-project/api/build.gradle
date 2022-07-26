@@ -1,0 +1,17 @@
+plugins {
+    id 'myproject.java-conventions'
+//    id 'java'
+}
+apply plugin: 'java'
+apply plugin: 'idea'
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+dependencies {
+    implementation project(':lib')
+}
