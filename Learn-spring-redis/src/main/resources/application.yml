@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  redis:
+    database: 0
+    host: 192.168.11.8
+    port: 6379
+    password:
+    timeout: 60000
+
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
