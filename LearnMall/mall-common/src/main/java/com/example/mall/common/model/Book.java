@@ -1,5 +1,6 @@
 package com.example.mall.common.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,6 @@ import javax.persistence.Id;
  */
 @Entity
 @Setter
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
@@ -24,5 +24,4 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-
 }

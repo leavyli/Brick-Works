@@ -3,7 +3,6 @@ package com.example.mall.common.controllers;
 import com.example.mall.common.model.Book;
 import com.example.mall.common.repositories.BookRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
