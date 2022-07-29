@@ -18,11 +18,20 @@
                 <groupId>org.example.plugins</groupId>
                 <artifactId>gswm-maven-plugin</artifactId>
                 <version>1.0</version>
+                <configuration>
+                    <url>http://www.foobar.com/query</url>
+                    <options>
+                        <option>one</option>
+                        <option>two</option>
+                        <option>three</option>
+                    </options>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>validate</phase>
                         <goals>
                             <goal>systeminfo</goal>
+                            <goal>myquery</goal>
                         </goals>
                     </execution>
                 </executions>
