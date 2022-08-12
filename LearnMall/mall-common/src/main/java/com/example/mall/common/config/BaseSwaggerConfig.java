@@ -1,7 +1,6 @@
 package com.example.mall.common.config;
 
 
-import com.example.mall.common.domain.SwaggerProperties;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 
@@ -37,5 +36,4 @@ public abstract class BaseSwaggerConfig {
     }
 
 
-    public abstract SwaggerProperties  swaggerProperties();
 }
