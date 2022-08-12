@@ -3,7 +3,7 @@ POST http://localhost:8080/register
 Content-Type: application/json
 
 {
-  "username": "te",
+  "username": "fuxyifuck",
   "password": "test",
   "icon": "http://localhost:8080/icon/test.png",
   "email": "1233@gg.com",
@@ -11,22 +11,5 @@ Content-Type: application/json
   "note": "this is a note"
 }
 
-<> 2022-08-12T182320.400.json
-<> 2022-08-12T182253.400.json
-<> 2022-08-12T173505.400.json
-<> 2022-08-12T172723.200.txt
-<> 2022-08-12T171931.200.txt
-<> 2022-08-12T171923.200.txt
-<> 2022-08-12T171921.200.txt
-<> 2022-08-12T171916.200.txt
-<> 2022-08-12T171850.200.txt
-<> 2022-08-12T171742.200.txt
-<> 2022-08-12T171732.200.txt
-<> 2022-08-12T171633.200.txt
-<> 2022-08-12T171630.200.txt
-<> 2022-08-12T171441.200.txt
-<> 2022-08-12T171142.200.txt
-<> 2022-08-12T171043.200.txt
-<> 2022-08-12T171003.200.txt
-
 ###
+GET http://localhost:8080/test

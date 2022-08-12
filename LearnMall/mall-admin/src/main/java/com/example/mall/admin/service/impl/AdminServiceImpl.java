@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.mall.admin.dto.AdminDto;
 import com.example.mall.admin.service.AdminService;
-import com.example.mall.admin.mapper.AdminMapper;
+import com.example.mall.mbg.mapper.admin.AdminMapper;
 import com.example.mall.mbg.model.Admin.Admin;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,8 @@ import java.util.Optional;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements AdminService {
-
     /**
      * 注册用户
      * @param adminDto
@@ -43,4 +45,11 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         this.save(admin);
         return Optional.ofNullable(admin);
     }
+
+    @Override
+    public String login(String username, String password) {
+        return null;
+    }
+
+
 }

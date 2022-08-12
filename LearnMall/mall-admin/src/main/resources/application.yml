@@ -2,6 +2,6 @@ spring:
   profiles:
     active: common, mbg
 
-mybatis-plus:
-  mapper-locations: classpath*:mapper/*.xml
+#mybatis-plus:
+#  mapper-locations: classpath*:mapper/*.xml
 

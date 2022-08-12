@@ -18,6 +18,7 @@
         <module>mall-common</module>
         <module>mall-admin</module>
         <module>mall-mbg</module>
+        <module>mall-security</module>
     </modules>
 
     <properties>

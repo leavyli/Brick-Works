@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 //@MapperScan({"com.example.mall.mbg.dao","com.example.mall.mbg.mapper"})
-@MapperScan({"com.example.mall.admin.dao","com.example.mall.admin.mapper"})
+@MapperScan({"com.example.mall.admin.dao","com.example.mall.mbg.mapper"})
 public class MybatisPlusConfig {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
