@@ -2,14 +2,11 @@ package com.example.mall.admin.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 /**
  * Author saino
@@ -18,9 +15,8 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Setter
 public class AdminDto {
-//    @Schema(name = "username", description = "用户名", required = true)
-    @NotBlank(message = "用户名不能为空白字符串")
-    @Min(value = 4, message = "用户名长度不能小于4")
+    @Size(min = 4, max = 20, message = "用户名长度必须在4-20之间")
+    @Schema(name = "username", description = "用户名", required = true)
     private String username;
     @NotEmpty
     @Schema(name = "password", description = "密码", required = true)
