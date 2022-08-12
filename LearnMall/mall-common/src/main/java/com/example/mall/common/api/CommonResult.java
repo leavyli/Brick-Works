@@ -47,6 +47,14 @@ public class CommonResult<T> {
 
     /**
      * 失败返回结果
+     * @return CommonResult
+     */
+    public static <T> CommonResult<T> failed() {
+        return failed(ResultCode.FAILED);
+    }
+
+    /**
+     * 失败返回结果
      *
      * @param errorCode 错误码
      * @return CommonResult
@@ -74,6 +82,14 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> failed(String message) {
         return new CommonResult<T>(ResultCode.FAILED.getCode(), message, null);
+    }
+
+    /**
+     * 参数验证失败返回结果
+     * @return CommonResult
+     */
+    public static <T> CommonResult<T> validateFailed(String message) {
+        return new CommonResult<>(ResultCode.VALIDATE_FAILED.getCode(), message, null);
     }
 
 }
