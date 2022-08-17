@@ -8,7 +8,7 @@ secure:
   ignored:
     urls:
       - /admin/test
-      - /admin/hello
+#      - /admin/hello
       - /admin/register
 logging:
   level:
