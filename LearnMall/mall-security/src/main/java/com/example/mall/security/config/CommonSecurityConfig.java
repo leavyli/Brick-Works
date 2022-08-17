@@ -1,6 +1,6 @@
 package com.example.mall.security.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
+import com.example.mall.security.util.JwtTokenUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,5 +20,10 @@ public class CommonSecurityConfig {
     @Bean
     public IgnoreUrlsConfig ignoreUrlsConfig() {
         return new IgnoreUrlsConfig();
+    }
+
+    @Bean
+    public JwtTokenUtil jwtTokenUtil() {
+        return new JwtTokenUtil();
     }
 }

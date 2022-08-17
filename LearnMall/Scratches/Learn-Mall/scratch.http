@@ -12,6 +12,15 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:8080/admin/login
+Content-Type: application/json
+
+{
+  "username": "fuxyifuck",
+  "password": "test"
+}
+
+###
 GET http://localhost:8080/admin/hello
 
 ###

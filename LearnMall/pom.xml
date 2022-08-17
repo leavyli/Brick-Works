@@ -33,6 +33,8 @@
         <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <mysql-connector.version>8.0.29</mysql-connector.version>
         <dynamic-datasourc.eversion>3.5.1</dynamic-datasourc.eversion>
+        <oauth2-resource-server.version>5.7.3</oauth2-resource-server.version>
+        <oauth2-jose.version>5.7.3</oauth2-jose.version>
     </properties>
     <dependencies>
         <dependency>
@@ -52,7 +54,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
@@ -126,11 +127,22 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/com.baomidou/dynamic-datasource-spring-boot-starter -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
                 <version>${dynamic-datasourc.eversion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-oauth2-resource-server</artifactId>
+                <version>${oauth2-resource-server.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-oauth2-jose</artifactId>
+                <version>${oauth2-jose.version}</version>
             </dependency>
 
         </dependencies>

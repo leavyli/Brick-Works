@@ -6,6 +6,7 @@ import com.example.mall.admin.service.AdminService;
 import com.example.mall.common.api.CommonResult;
 import com.example.mall.mbg.mapper.admin.AdminMapper;
 import com.example.mall.mbg.model.Admin.Admin;
+import com.nimbusds.jose.JOSEException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,7 @@ public class AdminController {
     /**
      * 注册用户
      *
-     * @param adminDto
+     * @param adminDto 用户注册信息
      * @return CommonResult
      */
     @Operation(summary = "register user", description = "注册用户", tags = {"AdminDto"})
@@ -48,14 +49,18 @@ public class AdminController {
     /**
      * 登录以后返回token
      *
-     * @param adminLogin
-     * @return
+     * @param adminLogin 登录参数
+     * @return jwt token
      */
     @Operation(summary = "user login", description = "用户登录")
-    public CommonResult<String> login(@Validated @RequestBody AdminLogin adminLogin) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public CommonResult<String> login(@Validated @RequestBody AdminLogin adminLogin) throws JOSEException {
         String token = adminService.login(adminLogin.getUsername(), adminLogin.getPassword());
+        if (token == null) {
+            return CommonResult.failed("用户名或密码错误");
+        }
 
-        return CommonResult.success(token);
+        return CommonResult.success(token, "登录成功");
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
