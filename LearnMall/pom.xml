@@ -35,6 +35,7 @@
         <dynamic-datasourc.eversion>3.5.1</dynamic-datasourc.eversion>
         <oauth2-resource-server.version>5.7.3</oauth2-resource-server.version>
         <oauth2-jose.version>5.7.3</oauth2-jose.version>
+        <think.version>1.7.0</think.version>
     </properties>
     <dependencies>
         <dependency>
@@ -143,6 +144,12 @@
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-oauth2-jose</artifactId>
                 <version>${oauth2-jose.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.crypto.tink</groupId>
+                <artifactId>tink</artifactId>
+                <version>${think.version}</version>
             </dependency>
 
         </dependencies>

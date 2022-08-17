@@ -28,6 +28,12 @@
             <artifactId>spring-security-oauth2-jose</artifactId>
             <version>${oauth2-jose.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.crypto.tink</groupId>
+            <artifactId>tink</artifactId>
+        </dependency>
+
     </dependencies>
 
     <properties>

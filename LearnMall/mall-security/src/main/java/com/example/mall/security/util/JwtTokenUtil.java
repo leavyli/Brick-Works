@@ -3,9 +3,13 @@ package com.example.mall.security.util;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.ECDSASigner;
 import com.nimbusds.jose.crypto.ECDSAVerifier;
+import com.nimbusds.jose.crypto.Ed25519Signer;
+import com.nimbusds.jose.crypto.Ed25519Verifier;
 import com.nimbusds.jose.jwk.Curve;
 import com.nimbusds.jose.jwk.ECKey;
+import com.nimbusds.jose.jwk.OctetKeyPair;
 import com.nimbusds.jose.jwk.gen.ECKeyGenerator;
+import com.nimbusds.jose.jwk.gen.OctetKeyPairGenerator;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import lombok.extern.slf4j.Slf4j;
@@ -28,13 +32,19 @@ public class JwtTokenUtil {
     private static final String CLAIM_KEY_USERNAME = "sub";
     private static final String CLAIM_KEY_CREATED = "created";
 
-    private static ECKey key = null;
+    private static OctetKeyPair key = null;
     @Value("${jwt.secret}")
     private String secret;
     @Value("${jwt.expiration}")
     private Long expiration;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+
+//    public JwtTokenUtil() throws JOSEException {
+//
+//    }
+
+
     /**
      * 根据负责生成JWT的token
      *
@@ -59,12 +69,12 @@ public class JwtTokenUtil {
         if (!claims.containsKey(CLAIM_KEY_USERNAME)) {
             return null;
         }
-        ECKey key = new ECKeyGenerator(Curve.P_256)
+        OctetKeyPair key = new OctetKeyPairGenerator(Curve.Ed25519)
                 .keyID(secret)
                 .generate();
         this.key = key;
 
-        var header = new JWSHeader.Builder(JWSAlgorithm.ES256)
+        var header = new JWSHeader.Builder(JWSAlgorithm.EdDSA)
                 .type(JOSEObjectType.JWT)
                 .keyID(key.getKeyID())
                 .build();
@@ -75,7 +85,7 @@ public class JwtTokenUtil {
                 .build();
 
         var singedJWT = new SignedJWT(header, payload);
-        singedJWT.sign(new ECDSASigner(key));
+        singedJWT.sign(new Ed25519Signer(key));
 
         return singedJWT.serialize();
     }
@@ -97,7 +107,7 @@ public class JwtTokenUtil {
         jwsObject.getJWTClaimsSet().getClaims().forEach((k,v)->{
             log.info("parseToken {}:{}",k,v);
         });
-        return jwsObject.verify(new ECDSAVerifier(key.toECPublicKey()));
+        return jwsObject.verify(new Ed25519Verifier(key.toPublicJWK()));
     }
 
 }

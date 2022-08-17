@@ -1,6 +1,7 @@
 package com.example.mall.security.config;
 
 import com.example.mall.security.util.JwtTokenUtil;
+import com.nimbusds.jose.JOSEException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +24,7 @@ public class CommonSecurityConfig {
     }
 
     @Bean
-    public JwtTokenUtil jwtTokenUtil() {
+    public JwtTokenUtil jwtTokenUtil() throws JOSEException {
         return new JwtTokenUtil();
     }
 }
