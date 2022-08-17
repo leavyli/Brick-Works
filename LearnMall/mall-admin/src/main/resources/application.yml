@@ -1,7 +1,18 @@
 spring:
   profiles:
-    active: common, mbg
+    active: common, mbg,secure
 
 #mybatis-plus:
 #  mapper-locations: classpath*:mapper/*.xml
+secure:
+  ignored:
+    urls:
+      - /admin/test
+      - /admin/hello
+      - /admin/register
+logging:
+  level:
+#    org.springframework: TRACE
+    org.springframework.security.web.FilterChainProxy: TRACE
+
 

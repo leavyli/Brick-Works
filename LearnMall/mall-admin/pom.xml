@@ -16,14 +16,10 @@
             <artifactId>mall-mbg</artifactId>
             <version>0.1</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.example</groupId>-->
-<!--            <artifactId>mall-security</artifactId>-->
-<!--            <version>0.1</version>-->
-<!--        </dependency>-->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>com.example</groupId>
+            <artifactId>mall-security</artifactId>
+            <version>0.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

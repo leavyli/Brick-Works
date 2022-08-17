@@ -2,10 +2,10 @@ package com.example.mall.admin.controller;
 
 import com.example.mall.admin.dto.AdminDto;
 import com.example.mall.admin.dto.AdminLogin;
+import com.example.mall.admin.service.AdminService;
 import com.example.mall.common.api.CommonResult;
 import com.example.mall.mbg.mapper.admin.AdminMapper;
 import com.example.mall.mbg.model.Admin.Admin;
-import com.example.mall.admin.service.AdminService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +26,7 @@ import java.util.Optional;
 @Tag(name = "AdminController", description = "后台管理相关接口")
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/admin")
 public class AdminController {
     private final AdminService adminService;
 
@@ -33,6 +34,7 @@ public class AdminController {
 
     /**
      * 注册用户
+     *
      * @param adminDto
      * @return CommonResult
      */
@@ -45,6 +47,7 @@ public class AdminController {
 
     /**
      * 登录以后返回token
+     *
      * @param adminLogin
      * @return
      */
@@ -55,11 +58,16 @@ public class AdminController {
         return CommonResult.success(token);
     }
 
-    @RequestMapping(value="/test", method= RequestMethod.GET)
-    public CommonResult<List<Admin>>  test(){
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public CommonResult<List<Admin>> test() {
         var ret = adminMapper.findAllAdminsByEmail("1233@gg.com");
         return CommonResult.success(ret);
 //        return "JHello";
+    }
+
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    public String hello() {
+        return "JHello";
     }
 
 }
