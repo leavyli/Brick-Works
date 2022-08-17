@@ -8,7 +8,7 @@ secure:
   ignored:
     urls:
       - /admin/test
-#      - /admin/hello
+      #      - /admin/hello
       - /admin/register
       - /admin/login
 jwt:
@@ -19,7 +19,7 @@ jwt:
 
 logging:
   level:
-#    org.springframework: TRACE
+    #    org.springframework: TRACE
     org.springframework.security.web.FilterChainProxy: TRACE
     com.nimbusds: TRACE
 

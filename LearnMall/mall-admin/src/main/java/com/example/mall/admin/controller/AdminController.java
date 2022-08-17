@@ -6,6 +6,7 @@ import com.example.mall.admin.service.AdminService;
 import com.example.mall.common.api.CommonResult;
 import com.example.mall.mbg.mapper.admin.AdminMapper;
 import com.example.mall.mbg.model.Admin.Admin;
+import com.example.mall.security.util.JwtTokenUtil;
 import com.nimbusds.jose.JOSEException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,6 +33,7 @@ public class AdminController {
     private final AdminService adminService;
 
     private final AdminMapper adminMapper;
+
 
     /**
      * 注册用户
