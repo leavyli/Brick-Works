@@ -1,5 +1,6 @@
 package com.example.mall.common.api;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CommonResult<T> {
+    @Schema(name = "code", description = "业务代码号")
     private long code;
+    @Schema(name = "message", description = "提示信息")
     private String message;
     private T data;
 
