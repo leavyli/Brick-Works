@@ -1,13 +1,14 @@
 package com.example.mall.mbg.model.Admin;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Author saino
@@ -36,10 +37,11 @@ public class Admin {
     private String note;
 
     @Schema(description = "创建时间")
-    private Date createTime;
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
 
     @Schema(description = "最后登录时间")
-    private Date loginTime;
+    private LocalDateTime loginTime;
 
     @Schema(description = "帐号启用状态：0->禁用；1->启用")
     private Integer status;
