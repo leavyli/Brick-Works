@@ -9,8 +9,6 @@ import com.example.mall.mbg.model.Admin.Admin;
 import com.nimbusds.jose.JOSEException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,7 +61,7 @@ public class AdminController {
      */
     @Operation(summary = "user login", description = "用户登录", tags = "admin")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public CommonResult<String> login(@Validated @RequestBody AdminLogin adminLogin) throws JOSEException, ParseException {
+    public CommonResult<String> login(@Validated @RequestBody AdminLogin adminLogin) throws JOSEException {
         String token = adminService.login(adminLogin.getUsername(), adminLogin.getPassword());
         if (token == null) {
             return CommonResult.failed("用户名或密码错误");
