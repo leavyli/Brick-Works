@@ -3,7 +3,7 @@ POST http://localhost:8080/admin/register
 Content-Type: application/json
 
 {
-  "username": "fuxyifuck",
+  "username": "fuxyifuck1d2",
   "password": "test",
   "icon": "http://localhost:8080/icon/test.png",
   "email": "1233@gg.com",

@@ -1,6 +1,9 @@
 package com.example.mall.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
+import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.mall.admin.bo.AdminUserDetails;
 import com.example.mall.admin.dto.AdminDto;
@@ -19,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,6 +79,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             log.info("user not enabled");
             return null;
         }
+        //更新登录时间
+        LambdaUpdateChainWrapper<Admin> wrapper = new LambdaUpdateChainWrapper<>(this.baseMapper);
+        wrapper.eq(Admin::getUsername, username).set(Admin::getLoginTime, LocalDateTime.now()).update();
 
         return jwtTokenUtil.generateToken(userDetails);
     }
