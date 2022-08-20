@@ -1,8 +1,6 @@
 package com.example.mall.admin.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.mall.admin.bo.AdminUserDetails;
@@ -68,6 +66,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public String login(String username, String password) throws JOSEException {
         UserDetails userDetails = this.loadUserByUsername(username);
+        if (userDetails == null) {
+            return null;
+        }
 
         //验证密码
         if (!passwordEncoder.matches(password, userDetails.getPassword())) {
@@ -94,8 +95,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             List<Resource> resources = this.getResourceList(user.getId());
             return new AdminUserDetails(user, resources);
         }
-        //抛出异常
-        throw new RuntimeException("user not found");
+        return null;
     }
 
     @Override

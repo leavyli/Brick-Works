@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 @Configuration
 @RequiredArgsConstructor
-@ComponentScan(basePackages = "com.example.mall.security.config")
+@ComponentScan(basePackages = {"com.example.mall.security.config","com.example.mall.security.filter"})
 //@Import({CommonSecurityConfig.class, SecurityConfig.class})
 public class AdminMallSecurity {
     private final AdminService adminService;

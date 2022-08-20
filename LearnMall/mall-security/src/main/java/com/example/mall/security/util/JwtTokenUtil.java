@@ -1,14 +1,13 @@
 package com.example.mall.security.util;
 
-import com.nimbusds.jose.*;
-import com.nimbusds.jose.crypto.ECDSASigner;
-import com.nimbusds.jose.crypto.ECDSAVerifier;
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.JOSEObjectType;
+import com.nimbusds.jose.JWSAlgorithm;
+import com.nimbusds.jose.JWSHeader;
 import com.nimbusds.jose.crypto.Ed25519Signer;
 import com.nimbusds.jose.crypto.Ed25519Verifier;
 import com.nimbusds.jose.jwk.Curve;
-import com.nimbusds.jose.jwk.ECKey;
 import com.nimbusds.jose.jwk.OctetKeyPair;
-import com.nimbusds.jose.jwk.gen.ECKeyGenerator;
 import com.nimbusds.jose.jwk.gen.OctetKeyPairGenerator;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
@@ -50,7 +49,6 @@ public class JwtTokenUtil {
      *
      * @param claims 内容
      * @return JWT
-     *
      * @throws JOSEException 异常
      */
     private String generateToken(Map<String, Object> claims) throws JOSEException {
@@ -103,11 +101,20 @@ public class JwtTokenUtil {
     }
 
     public boolean parseToken(String token) throws ParseException, JOSEException {
-        SignedJWT jwsObject= SignedJWT.parse(token);
-        jwsObject.getJWTClaimsSet().getClaims().forEach((k,v)->{
-            log.info("parseToken {}:{}",k,v);
+        SignedJWT jwsObject = SignedJWT.parse(token);
+        jwsObject.getJWTClaimsSet().getClaims().forEach((k, v) -> {
+            log.info("parseToken {}:{}", k, v);
         });
         return jwsObject.verify(new Ed25519Verifier(key.toPublicJWK()));
+    }
+
+    public String getClaimNameFromToken(String token) {
+        try {
+            SignedJWT jwsObject = SignedJWT.parse(token);
+            return (String) jwsObject.getJWTClaimsSet().getClaims().get(CLAIM_KEY_USERNAME);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 
 }
