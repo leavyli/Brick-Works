@@ -3,12 +3,17 @@ package com.example.mall.admin.config;
 import com.example.mall.admin.service.AdminService;
 import com.example.mall.admin.service.ResourceService;
 import com.example.mall.mbg.model.Admin.Resource;
+import com.example.mall.security.component.DynamicAccessDecisionManager;
+import com.example.mall.security.component.DynamicSecurityMetadataSource;
 import com.example.mall.security.component.DynamicSecurityService;
 import com.example.mall.security.component.filter.DynamicSecurityFilter;
+import com.example.mall.security.config.IgnoreUrlsConfig;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -51,4 +56,22 @@ public class AdminMallSecurity {
         };
     }
 
+
+    @ConditionalOnBean(name = {"dynamicSecurityService"})
+    @Bean
+    public DynamicSecurityFilter dynamicSecurityFilter(IgnoreUrlsConfig ignoreUrlsConfig, DynamicSecurityMetadataSource dynamicSecurityMetadataSource) {
+        return new DynamicSecurityFilter(ignoreUrlsConfig, dynamicSecurityMetadataSource);
+    }
+
+    @ConditionalOnBean(name = {"dynamicSecurityService"})
+    @Bean
+    public DynamicAccessDecisionManager dynamicAccessDecisionManager() {
+        return new DynamicAccessDecisionManager();
+    }
+
+    @ConditionalOnBean(name = "dynamicSecurityService")
+    @Bean
+    public DynamicSecurityMetadataSource dynamicSecurityMetadataSource(DynamicSecurityService dynamicSecurityService) {
+        return new DynamicSecurityMetadataSource(dynamicSecurityService);
+    }
 }

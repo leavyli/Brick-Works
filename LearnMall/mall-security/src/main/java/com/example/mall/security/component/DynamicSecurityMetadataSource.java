@@ -17,7 +17,6 @@ import java.util.*;
  * Author saino
  * LastModify 14:42
  */
-@Component
 @RequiredArgsConstructor
 public class DynamicSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     private final DynamicSecurityService dynamicSecurityService;
@@ -68,6 +67,6 @@ public class DynamicSecurityMetadataSource implements FilterInvocationSecurityMe
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return false;
+        return true;
     }
 }

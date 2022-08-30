@@ -1,17 +1,19 @@
 package com.example.mall.security.component.filter;
 
+import com.example.mall.security.component.DynamicAccessDecisionManager;
 import com.example.mall.security.component.DynamicSecurityMetadataSource;
 import com.example.mall.security.config.IgnoreUrlsConfig;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
 import org.springframework.security.access.intercept.InterceptorStatusToken;
 import org.springframework.security.web.FilterInvocation;
-import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -20,11 +22,15 @@ import java.io.IOException;
  * Author saino
  * LastModify 5:46
  */
-@Component
 @RequiredArgsConstructor
 public class DynamicSecurityFilter extends AbstractSecurityInterceptor implements Filter {
     private final IgnoreUrlsConfig ignoreUrlsConfig;
     private final DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
+
+    @Autowired
+    public void setDynamicAccessDecisionManager(DynamicAccessDecisionManager dynamicAccessDecisionManage) {
+        super.setAccessDecisionManager(dynamicAccessDecisionManage);
+    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {

@@ -14,8 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.util.Optional;
-
 /**
  * Author saino
  * LastModify 5:37
@@ -63,5 +61,6 @@ public class SecurityConfig {
 
         return httpSecurity.build();
     }
+
 
 }
