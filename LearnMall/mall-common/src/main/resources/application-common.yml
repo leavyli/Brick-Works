@@ -14,9 +14,4 @@ management:
       exposure:
         include: openapi, swagger-ui
 
-spring:
-  redis:
-    database: 0
-    host: 192.168.11.8
-    port: 6379
-    connect-timeout: 5000
+

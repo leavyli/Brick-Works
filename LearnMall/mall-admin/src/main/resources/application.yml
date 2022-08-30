@@ -2,6 +2,16 @@ spring:
   profiles:
     active: common, mbg,secure
 
+  redis:
+    database: 0
+    host: 192.168.11.8
+    port: 6379
+    connect-timeout: 5000
+  cache:
+    redis:
+      time-to-live: 1d
+      use-key-prefix: true
+
 #mybatis-plus:
 #  mapper-locations: classpath*:mapper/*.xml
 secure:
@@ -9,6 +19,7 @@ secure:
     urls:
       - /admin/test
       #      - /admin/hello
+      - /admin/getUser/*
       - /admin/register
       - /admin/login
 jwt:
@@ -17,10 +28,14 @@ jwt:
   expiration: 604800 #JWT的超期限时间(60*60*24*7)
   tokenHead: 'Bearer'  #JWT负载中拿到开头
 
+
 logging:
   level:
     #    org.springframework: TRACE
     org.springframework.security.web.FilterChainProxy: TRACE
+    org.springframework.cache: TRACE
+    org.springframework.data.redis: TRACE
+
 #    com.nimbusds: TRACE
 
 

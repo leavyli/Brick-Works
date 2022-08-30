@@ -13,11 +13,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +27,7 @@ import java.util.Optional;
  * LastModify 5:16
  * 后台管理Controller
  */
+@Slf4j
 @Tag(name = "AdminController", description = "后台管理相关接口")
 @RestController
 @RequiredArgsConstructor
@@ -68,6 +69,19 @@ public class AdminController {
         }
 
         return CommonResult.success(token, "登录成功");
+    }
+
+
+    @RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
+    @Cacheable("userCache")
+    public CommonResult<Admin> getUserById(@PathVariable Long id) {
+        log.debug("search no cache ");
+        Admin user = adminService.getById(id);
+        if (user != null) {
+           return CommonResult.success(user);
+        } else {
+            return CommonResult.failed("sorry not has such user");
+        }
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)

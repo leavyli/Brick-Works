@@ -53,9 +53,9 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 //        registry.and().authorizeRequests().anyRequest().permitAll().and().csrf().disable();
 
-//        if (dynamicSecurityService != null) {
-//            registry.and().addFilterBefore(dynamicSecurityFilter, FilterSecurityInterceptor.class);
-//        }
+        if (dynamicSecurityService != null) {
+            registry.and().addFilterBefore(dynamicSecurityFilter, FilterSecurityInterceptor.class);
+        }
 
         return httpSecurity.build();
     }
