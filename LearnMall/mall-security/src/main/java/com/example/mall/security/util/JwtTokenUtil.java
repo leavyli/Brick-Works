@@ -108,6 +108,16 @@ public class JwtTokenUtil {
         return jwsObject.verify(new Ed25519Verifier(key.toPublicJWK()));
     }
 
+    public boolean verifyToken(String token) {
+        SignedJWT jwsObject = null;
+        try {
+            jwsObject = SignedJWT.parse(token);
+            return jwsObject.verify(new Ed25519Verifier(key.toPublicJWK()));
+        } catch (ParseException | JOSEException e) {
+            return false;
+        }
+    }
+
     public String getClaimNameFromToken(String token) {
         try {
             SignedJWT jwsObject = SignedJWT.parse(token);

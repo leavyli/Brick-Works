@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Author saino
@@ -28,8 +29,8 @@ public class AdminUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-//        return resources.stream().map(resource -> new SimpleGrantedAuthority(resource.getId() + ":" + resource.getName())).collect(Collectors.toList());
+//        return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        return resources.stream().map(resource -> new SimpleGrantedAuthority(resource.getId() + ":" + resource.getName())).collect(Collectors.toList());
     }
 
     @Override

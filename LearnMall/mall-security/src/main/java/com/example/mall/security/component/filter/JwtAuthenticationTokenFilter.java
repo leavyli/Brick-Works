@@ -1,4 +1,4 @@
-package com.example.mall.security.filter;
+package com.example.mall.security.component.filter;
 
 import com.example.mall.security.util.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +37,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         //获取请求头的jwt
         String authToken = request.getHeader(this.tokenHead);
         var userName = jwtTokenUtil.getClaimNameFromToken(authToken);
-        if (userName != null) {
+        if (userName != null && jwtTokenUtil.verifyToken(authToken)) {
             var userDetails = userDetailsService.loadUserByUsername(userName);
             if (userDetails != null) {
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

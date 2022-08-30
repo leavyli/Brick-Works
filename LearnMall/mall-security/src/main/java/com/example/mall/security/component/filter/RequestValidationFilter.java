@@ -1,4 +1,4 @@
-package com.example.mall.security.filter;
+package com.example.mall.security.component.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

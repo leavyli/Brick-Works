@@ -1,6 +1,8 @@
 package com.example.mall.security.config;
 
-import com.example.mall.security.filter.JwtAuthenticationTokenFilter;
+import com.example.mall.security.component.DynamicSecurityService;
+import com.example.mall.security.component.filter.DynamicSecurityFilter;
+import com.example.mall.security.component.filter.JwtAuthenticationTokenFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +11,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import java.util.Optional;
 
 /**
  * Author saino
@@ -20,6 +25,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     private final IgnoreUrlsConfig ignoreUrlsConfig;
     private final JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+
+    private final DynamicSecurityService dynamicSecurityService;
+
+    private final DynamicSecurityFilter dynamicSecurityFilter;
+
+
+
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -44,6 +56,10 @@ public class SecurityConfig {
                 .and()
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 //        registry.and().authorizeRequests().anyRequest().permitAll().and().csrf().disable();
+
+        if (dynamicSecurityService != null) {
+            registry.and().addFilterBefore(dynamicSecurityFilter, FilterSecurityInterceptor.class);
+        }
 
         return httpSecurity.build();
     }
