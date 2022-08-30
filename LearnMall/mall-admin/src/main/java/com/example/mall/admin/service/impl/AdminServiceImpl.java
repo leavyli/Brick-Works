@@ -7,7 +7,7 @@ import com.example.mall.admin.bo.AdminUserDetails;
 import com.example.mall.admin.dto.AdminDto;
 import com.example.mall.admin.service.AdminService;
 import com.example.mall.admin.service.ResourceService;
-import com.example.mall.mbg.mapper.admin.AdminMapper;
+import com.example.mall.mbg.mapper.Admin.AdminMapper;
 import com.example.mall.mbg.model.Admin.Admin;
 import com.example.mall.mbg.model.Admin.Resource;
 import com.example.mall.security.util.JwtTokenUtil;

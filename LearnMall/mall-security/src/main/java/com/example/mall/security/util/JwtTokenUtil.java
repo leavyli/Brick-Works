@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -38,6 +39,14 @@ public class JwtTokenUtil {
     private Long expiration;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+
+    @PostConstruct
+    public void initKey() throws JOSEException {
+        OctetKeyPair key = new OctetKeyPairGenerator(Curve.Ed25519)
+                .keyID(secret)
+                .generate();
+        this.key = key;
+    }
 
 //    public JwtTokenUtil() throws JOSEException {
 //
@@ -67,10 +76,7 @@ public class JwtTokenUtil {
         if (!claims.containsKey(CLAIM_KEY_USERNAME)) {
             return null;
         }
-        OctetKeyPair key = new OctetKeyPairGenerator(Curve.Ed25519)
-                .keyID(secret)
-                .generate();
-        this.key = key;
+
 
         var header = new JWSHeader.Builder(JWSAlgorithm.EdDSA)
                 .type(JOSEObjectType.JWT)

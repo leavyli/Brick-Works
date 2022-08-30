@@ -6,6 +6,7 @@ import com.example.mall.security.config.IgnoreUrlsConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
 import org.springframework.security.access.intercept.InterceptorStatusToken;
@@ -27,9 +28,11 @@ public class DynamicSecurityFilter extends AbstractSecurityInterceptor implement
     private final IgnoreUrlsConfig ignoreUrlsConfig;
     private final DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
 
-    @Autowired
-    public void setDynamicAccessDecisionManager(DynamicAccessDecisionManager dynamicAccessDecisionManage) {
-        super.setAccessDecisionManager(dynamicAccessDecisionManage);
+    private final AccessDecisionManager  accessDecisionManager;
+
+    @PostConstruct
+    public void setDynamicAccessDecisionManager() {
+        super.setAccessDecisionManager(accessDecisionManager);
     }
 
     @Override

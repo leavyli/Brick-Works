@@ -36,14 +36,17 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //获取请求头的jwt
         String authToken = request.getHeader(this.tokenHead);
-        var userName = jwtTokenUtil.getClaimNameFromToken(authToken);
-        if (userName != null && jwtTokenUtil.verifyToken(authToken)) {
-            var userDetails = userDetailsService.loadUserByUsername(userName);
-            if (userDetails != null) {
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                log.info("authenticated user:{}", userName);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+        if (authToken != null) {
+            var userName = jwtTokenUtil.getClaimNameFromToken(authToken);
+            var verifyToken=  jwtTokenUtil.verifyToken(authToken);
+            if (userName != null && verifyToken) {
+                var userDetails = userDetailsService.loadUserByUsername(userName);
+                if (userDetails != null) {
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    log.info("authenticated user:{}", userName);
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
             }
         }
         filterChain.doFilter(request, response);

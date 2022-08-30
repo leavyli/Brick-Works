@@ -1,4 +1,4 @@
-package com.example.mall.mbg.mapper.admin;
+package com.example.mall.mbg.mapper.Admin;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.mall.mbg.model.Admin.Resource;

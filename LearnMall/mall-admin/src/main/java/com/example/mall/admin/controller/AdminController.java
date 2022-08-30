@@ -4,7 +4,7 @@ import com.example.mall.admin.dto.AdminDto;
 import com.example.mall.admin.dto.AdminLogin;
 import com.example.mall.admin.service.AdminService;
 import com.example.mall.common.api.CommonResult;
-import com.example.mall.mbg.mapper.admin.AdminMapper;
+import com.example.mall.mbg.mapper.Admin.AdminMapper;
 import com.example.mall.mbg.model.Admin.Admin;
 import com.nimbusds.jose.JOSEException;
 import io.swagger.v3.oas.annotations.Operation;

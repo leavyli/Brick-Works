@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mall.mbg.mapper.Admin.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.example.mall.mbg.model.Admin.Role">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="admin_count" jdbcType="VARCHAR" property="adminCount"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+    </resultMap>
+    <select id="getResourceListByRoleId" resultType="com.example.mall.mbg.model.Admin.Resource">
+        select r.id          id,
+               r.create_time createTime,
+               r.`name`      `name`,
+               r.url         url,
+               r.description description,
+               r.category_id categoryId
+        from role_resource_relation rrr
+                 left join resource r on rrr.resource_id = r.id
+        where rrr.role_id = #{roleId}
+        group by r.id
+    </select>
+
+
+</mapper>

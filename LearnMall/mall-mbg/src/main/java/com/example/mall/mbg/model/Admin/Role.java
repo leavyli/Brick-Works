@@ -4,38 +4,35 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
-import lombok.ToString;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Author saino
- * LastModify 16:36
+ * Create 2022/8/30 13:54
  */
 @Getter
 @Setter
-@ToString
-public class Resource {
+public class Role {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @NonNull
-    private Long adminId;
-
-    @Schema(description = "创建时间")
-    private Date createTime;
-
-    @Schema(description = "资源名称")
+    @Schema(description = "名词")
     private String name;
-
-    @Schema(description = "资源URL")
-    private String url;
 
     @Schema(description = "描述")
     private String description;
 
-    @Schema(description = "资源分类ID")
-    private Long categoryId;
+    @Schema(description = "后台用户数")
+    private Integer adminCount;
+
+    @Schema(description = "创建时间")
+    private LocalDateTime createTime;
+
+    @Schema(description = "启用状态: 0->禁用； 1->启用")
+    private Integer status;
+
+    private Integer sort;
+
 }

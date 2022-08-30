@@ -21,6 +21,6 @@ logging:
   level:
     #    org.springframework: TRACE
     org.springframework.security.web.FilterChainProxy: TRACE
-    com.nimbusds: TRACE
+#    com.nimbusds: TRACE
 
 

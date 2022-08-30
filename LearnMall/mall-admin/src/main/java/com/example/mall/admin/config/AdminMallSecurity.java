@@ -59,8 +59,8 @@ public class AdminMallSecurity {
 
     @ConditionalOnBean(name = {"dynamicSecurityService"})
     @Bean
-    public DynamicSecurityFilter dynamicSecurityFilter(IgnoreUrlsConfig ignoreUrlsConfig, DynamicSecurityMetadataSource dynamicSecurityMetadataSource) {
-        return new DynamicSecurityFilter(ignoreUrlsConfig, dynamicSecurityMetadataSource);
+    public DynamicSecurityFilter dynamicSecurityFilter(IgnoreUrlsConfig ignoreUrlsConfig, DynamicSecurityMetadataSource dynamicSecurityMetadataSource, AccessDecisionManager accessDecisionManager) {
+        return new DynamicSecurityFilter(ignoreUrlsConfig, dynamicSecurityMetadataSource, accessDecisionManager);
     }
 
     @ConditionalOnBean(name = {"dynamicSecurityService"})
