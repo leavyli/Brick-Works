@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ import java.util.List;
 @Tag(name = "RoleController", description = "角色管理相关接口")
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/role")
 public class RoleController {
     private final RoleService roleService;
 

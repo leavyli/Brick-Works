@@ -17,6 +17,7 @@ spring:
 secure:
   ignored:
     urls:
+      - /admin/*
       - /admin/test
       #      - /admin/hello
       - /admin/getUser/*

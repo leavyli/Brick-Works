@@ -1,7 +1,9 @@
 package com.example.mall.admin.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
  */
 @Setter
 @Getter
+@Builder
 public class RoleDto {
     @NotEmpty
     private Long id;
