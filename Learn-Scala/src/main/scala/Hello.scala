@@ -31,4 +31,15 @@ def isIntIntMap(x: Any) =
   isIntIntMap(Map("d" -> 2))
   isIntIntMap(2)
 
+  val light = Light()
+  light.turnOn()
+
+  val book = Book("The Lord of the Rings", ISBNumber("I-11234"))
+  println(book)
+  println(Book.Prefix)
+  Book.Prefix = "="
+  println(Book.Prefix)
+
+
+
 }
