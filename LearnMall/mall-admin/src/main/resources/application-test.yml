@@ -7,8 +7,10 @@ spring:
       path: /h2-console
 
   datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MYSQL
 #    url: jdbc:h2:file:f:/temp/testdb;MODE=MYSQL
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MYSQL
+#    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MYSQL
     username: sa
     password:
 
