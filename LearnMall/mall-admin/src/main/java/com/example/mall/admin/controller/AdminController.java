@@ -1,5 +1,6 @@
 package com.example.mall.admin.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.mall.admin.dto.AdminDto;
 import com.example.mall.admin.dto.AdminLogin;
 import com.example.mall.admin.service.AdminService;
@@ -14,6 +15,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -73,7 +75,7 @@ public class AdminController {
 
     @Operation(summary = "get user by id", description = "通过id获取用户", tags = "admin")
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
-    @Cacheable(value = "userCache", key = "#root.methodName+\"::\"+#root.args[0]")
+    @Cacheable(cacheNames = "userCache")
     public CommonResult<Admin> getUserById(@RequestParam(name = "userid") Long id) {
         log.debug("search no cache ");
         Admin user = adminService.getById(id);
@@ -83,6 +85,17 @@ public class AdminController {
             return CommonResult.failed("sorry not has such user");
         }
     }
+
+    @Operation(summary = "del user by id", description = "通过id删除用户", tags = "admin")
+    @CacheEvict(cacheNames = "userCache")
+    @RequestMapping(value = "/delUser", method = RequestMethod.GET)
+    public CommonResult<String> delUserById(@RequestParam(name = "userid") Long id) {
+        var wrapper = new LambdaQueryWrapper<Admin>();
+        wrapper.eq(Admin::getId, id);
+        adminService.remove(wrapper);
+        return CommonResult.success("删除成功");
+    }
+
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public CommonResult<List<Admin>> test() {
