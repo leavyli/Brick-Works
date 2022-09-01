@@ -26,6 +26,7 @@ secure:
       - /admin/getUser/*
       - /admin/register
       - /admin/login
+      - /actuator/**
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
   secret: mall-admin-secret #JWT加解密使用的密钥
