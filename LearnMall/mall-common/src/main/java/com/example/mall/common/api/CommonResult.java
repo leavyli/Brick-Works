@@ -34,7 +34,7 @@ public class CommonResult<T> {
      * @return CommonResult
      */
     public static <T> CommonResult<T> success(T data) {
-        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+        return new CommonResult<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
 
     /**
@@ -45,7 +45,18 @@ public class CommonResult<T> {
      * @return CommonResult
      */
     public static <T> CommonResult<T> success(T data, String message) {
-        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), message, data);
+        return new CommonResult<>(ResultCode.SUCCESS.getCode(), message, data);
+    }
+
+
+    /**
+     * 成功返回结果
+     *
+     * @param message 提示信息
+     * @return CommonResult
+     */
+    public static <T> CommonResult<T> success(String message) {
+        return new CommonResult<>(ResultCode.SUCCESS.getCode(), message, null);
     }
 
     /**
@@ -63,7 +74,7 @@ public class CommonResult<T> {
      * @return CommonResult
      */
     public static <T> CommonResult<T> failed(IErrorCode errorCode) {
-        return new CommonResult<T>(errorCode.getCode(), errorCode.getMessage(), null);
+        return new CommonResult<>(errorCode.getCode(), errorCode.getMessage(), null);
     }
 
     /**
@@ -74,7 +85,7 @@ public class CommonResult<T> {
      * @return CommonResult
      */
     public static <T> CommonResult<T> failed(IErrorCode errorCode, String message) {
-        return new CommonResult<T>(errorCode.getCode(), message, null);
+        return new CommonResult<>(errorCode.getCode(), message, null);
     }
 
     /**
@@ -84,7 +95,7 @@ public class CommonResult<T> {
      * @return CommonResult
      */
     public static <T> CommonResult<T> failed(String message) {
-        return new CommonResult<T>(ResultCode.FAILED.getCode(), message, null);
+        return new CommonResult<>(ResultCode.FAILED.getCode(), message, null);
     }
 
     /**
