@@ -16,6 +16,7 @@ public class CommonResult<T> {
     private long code;
     @Schema(name = "message", description = "提示信息")
     private String message;
+    @Schema(name = "data", description = "相关数据")
     private T data;
 
     protected CommonResult() {
