@@ -3,14 +3,17 @@ spring:
     active: common, mbg,secure
 
   redis:
-    database: 0
+    database: ${redisConf.mallDev}
     host: 192.168.11.8
     port: 6379
     connect-timeout: 5000
   cache:
     redis:
-      time-to-live: 1d
+      time-to-live: 3d
       use-key-prefix: true
+
+redisConf:
+  mallDev: 0
 
 #mybatis-plus:
 #  mapper-locations: classpath*:mapper/*.xml
