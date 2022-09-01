@@ -3,7 +3,6 @@ package com.example.mall.mbg.model.Admin;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,7 +15,6 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-@Builder
 @ToString
 public class Role {
     @TableId(value = "id", type = IdType.AUTO)
@@ -38,5 +36,4 @@ public class Role {
     private Integer status;
 
     private Integer sort;
-
 }

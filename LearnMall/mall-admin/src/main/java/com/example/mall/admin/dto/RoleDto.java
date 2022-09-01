@@ -1,13 +1,11 @@
 package com.example.mall.admin.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.*;
-import java.time.LocalDateTime;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * Author saino
@@ -15,13 +13,9 @@ import java.time.LocalDateTime;
  */
 @Setter
 @Getter
-@Builder
 public class RoleDto {
-    @NotEmpty
-    private Long id;
-
     @Size(min = 1, max = 255, message = "名字1-255之间")
-    @Pattern(regexp = "^\\w+$")
+    @Pattern(regexp = "^\\w+$", message = "角色名字只能为英文字符")
     @Schema(description = "名字")
     private String name;
 

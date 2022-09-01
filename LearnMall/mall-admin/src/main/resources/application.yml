@@ -26,6 +26,7 @@ secure:
       - /admin/getUser/*
       - /admin/register
       - /admin/login
+      - /role/**
       - /actuator/**
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
