@@ -11,6 +11,12 @@ spring:
     redis:
       time-to-live: 3d
       use-key-prefix: true
+  data:
+    mongodb:
+      uri:  mongodb://root:example@192.168.11.8:27017/
+      username: root
+      password: example
+      database: mall
 
 redisConf:
   mallDev: 0
