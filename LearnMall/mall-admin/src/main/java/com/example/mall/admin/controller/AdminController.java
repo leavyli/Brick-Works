@@ -14,7 +14,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -72,13 +71,14 @@ public class AdminController {
     }
 
 
-    @RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
-    @Cacheable("userCache")
-    public CommonResult<Admin> getUserById(@PathVariable Long id) {
+    @Operation(summary = "get user by id", description = "通过id获取用户", tags = "admin")
+    @RequestMapping(value = "/getUser", method = RequestMethod.GET)
+    @Cacheable(value = "userCache", key = "#root.methodName+\"::\"+#root.args[0]")
+    public CommonResult<Admin> getUserById(@RequestParam(name = "userid") Long id) {
         log.debug("search no cache ");
         Admin user = adminService.getById(id);
         if (user != null) {
-           return CommonResult.success(user);
+            return CommonResult.success(user);
         } else {
             return CommonResult.failed("sorry not has such user");
         }
