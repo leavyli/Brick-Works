@@ -1,17 +1,20 @@
-package com.example.mall.mbg.config;
+package com.example.mall.admin.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Author saino
  * LastModify 9:53
  */
-//@Configuration
+@Configuration
+@ConditionalOnProperty(prefix = "druid-monitor",value = "web", havingValue = "on")
 public class DruidMonitorConfig {
     @ConditionalOnMissingBean(name = "druidServlet")
     @Bean

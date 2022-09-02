@@ -63,6 +63,5 @@ mybatis-plus:
     - classpath*:mapper/**/*.xml
     - classpath:mapper/*.xml
 
-#testnoimport:
-#  example:
-#    values: no
+druid-monitor:
+  web: "off"
