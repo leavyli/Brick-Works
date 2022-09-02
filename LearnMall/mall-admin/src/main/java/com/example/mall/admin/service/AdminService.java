@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.mall.mbg.model.Admin.Admin;
 import com.example.mall.admin.dto.AdminDto;
 import com.example.mall.mbg.model.Admin.Resource;
+import com.example.mall.mbg.model.Admin.Role;
 import com.nimbusds.jose.JOSEException;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -27,4 +28,8 @@ public interface AdminService extends IService<Admin> {
      * @return 资源列表
      */
     List<Resource> getResourceList(Long adminId);
+
+    int updateRole(Long adminId, List<Long> roleId);
+
+    List<Role> getRoleList(Long adminId);
 }

@@ -73,3 +73,14 @@ CREATE TABLE `role_resource_relation` (
                                           `resource_id` bigint NOT NULL,
                                           PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Table structure for admin_role_relation
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_role_relation`;
+CREATE TABLE `admin_role_relation` (
+                                       `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                                       `admin_id` bigint DEFAULT NULL,
+                                       `role_id` bigint DEFAULT NULL,
+                                       PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

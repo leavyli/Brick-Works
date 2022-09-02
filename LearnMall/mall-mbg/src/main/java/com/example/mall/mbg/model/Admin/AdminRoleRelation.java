@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Author saino
@@ -12,6 +13,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class AdminRoleRelation {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;

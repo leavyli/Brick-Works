@@ -8,8 +8,11 @@ import com.example.mall.admin.dto.AdminDto;
 import com.example.mall.admin.service.AdminService;
 import com.example.mall.admin.service.ResourceService;
 import com.example.mall.mbg.mapper.Admin.AdminMapper;
+import com.example.mall.mbg.mapper.Admin.AdminRoleRelationMapper;
 import com.example.mall.mbg.model.Admin.Admin;
+import com.example.mall.mbg.model.Admin.AdminRoleRelation;
 import com.example.mall.mbg.model.Admin.Resource;
+import com.example.mall.mbg.model.Admin.Role;
 import com.example.mall.security.util.JwtTokenUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,8 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +41,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenUtil jwtTokenUtil;
     private final ResourceService resourceService;
+
+    private final AdminRoleRelationMapper adminRoleRelationMapper;
 
     /**
      * 注册用户
@@ -101,6 +109,29 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public List<Resource> getResourceList(Long adminId) {
         return resourceService.list(new QueryWrapper<Resource>().eq("admin_id", adminId));
+    }
+
+    @Override
+    @Transactional
+    public int updateRole(Long adminId, List<Long> roleIds) {
+        int count = roleIds == null ? 0 : roleIds.size();
+
+        if (!CollectionUtils.isEmpty(roleIds)) {
+            ArrayList<AdminRoleRelation> list = new ArrayList<>();
+            for (Long roleId : roleIds) {
+                var adminRoleRelation = new AdminRoleRelation();
+                adminRoleRelation.setRoleId(roleId);
+                adminRoleRelation.setAdminId(adminId);
+                list.add(adminRoleRelation);
+            }
+            adminRoleRelationMapper.insertList(list);
+        }
+        return count;
+    }
+
+    @Override
+    public List<Role> getRoleList(Long adminId) {
+        return adminRoleRelationMapper.getRoleList(adminId);
     }
 
 

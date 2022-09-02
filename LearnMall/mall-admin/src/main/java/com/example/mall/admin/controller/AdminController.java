@@ -3,10 +3,12 @@ package com.example.mall.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.mall.admin.dto.AdminDto;
 import com.example.mall.admin.dto.AdminLogin;
+import com.example.mall.admin.dto.UpdateUserRoleDto;
 import com.example.mall.admin.service.AdminService;
 import com.example.mall.common.api.CommonResult;
 import com.example.mall.mbg.mapper.Admin.AdminMapper;
 import com.example.mall.mbg.model.Admin.Admin;
+import com.example.mall.mbg.model.Admin.Role;
 import com.nimbusds.jose.JOSEException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -96,6 +98,22 @@ public class AdminController {
         return CommonResult.success("删除成功");
     }
 
+    @Operation(summary = "assigning roles to a user ", description = "给用户分配角色", tags = {"admin", "role"})
+    @RequestMapping(value = "/role/update", method = RequestMethod.POST)
+    public CommonResult<String> updateUserRole(@Validated @RequestBody UpdateUserRoleDto dto) {
+        int count = adminService.updateRole(dto.getAdminId(), dto.getRoleIds());
+        if (count >= 0) {
+            return CommonResult.success("更新成功");
+        }
+        return CommonResult.failed("更新失败");
+    }
+
+    @Operation(summary = "get user's role list ", description = "获取用户被分配的角色", tags = {"admin", "role"})
+    @RequestMapping(value = "/getRoleList", method = RequestMethod.GET)
+    public CommonResult<List<Role>> updateUserRole(@RequestParam("adminId") Long adminId) {
+        List<Role> roleList = adminService.getRoleList(adminId);
+        return CommonResult.success(roleList);
+    }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public CommonResult<List<Admin>> test() {
