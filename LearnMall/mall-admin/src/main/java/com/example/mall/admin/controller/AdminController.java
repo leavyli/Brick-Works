@@ -109,8 +109,8 @@ public class AdminController {
     }
 
     @Operation(summary = "get user's role list ", description = "获取用户被分配的角色", tags = {"admin", "role"})
-    @RequestMapping(value = "/getRoleList", method = RequestMethod.GET)
-    public CommonResult<List<Role>> updateUserRole(@RequestParam("adminId") Long adminId) {
+    @RequestMapping(value = "/role/get", method = RequestMethod.GET)
+    public CommonResult<List<Role>> getUserRole(@RequestParam("adminId") Long adminId) {
         List<Role> roleList = adminService.getRoleList(adminId);
         return CommonResult.success(roleList);
     }

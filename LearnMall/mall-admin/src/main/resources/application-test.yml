@@ -37,7 +37,7 @@ spring:
 secure:
   ignored:
     urls:
-      - /admin/*
+      - /admin/**
       - /admin/test
       #      - /admin/hello
       - /admin/getUser/*
@@ -63,3 +63,6 @@ mybatis-plus:
     - classpath*:mapper/**/*.xml
     - classpath:mapper/*.xml
 
+#testnoimport:
+#  example:
+#    values: no
