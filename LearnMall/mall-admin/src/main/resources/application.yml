@@ -1,7 +1,4 @@
 spring:
-  profiles:
-    active: common, secure
-
   autoconfigure:
     #自动化配置 例外处理
     exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
@@ -98,6 +95,22 @@ mybatis-plus:
   mapper-locations:
     - classpath*:mapper/**/*.xml
     - classpath:mapper/*.xml
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+  show-actuator: true
+  use-management-port: true
+# This property enables the openapi and swagger-ui endpoints to be exposed beneath the actuator base path.
+management:
+  server:
+    port: 9990
+  endpoints:
+    web:
+      exposure:
+        include: openapi, swagger-ui
 
 druid-monitor:
   web: "on"

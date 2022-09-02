@@ -33,6 +33,24 @@
         </dependency>
 
         <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
@@ -48,20 +66,6 @@
             <artifactId>p6spy</artifactId>
             <version>3.9.1</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
 
 
@@ -80,7 +84,8 @@
                 <version>3.0.0-M7</version>
                 <configuration>
                     <classpathDependencyExcludes>
-                        <classpathDependencyExclude>com.baomidou:dynamic-datasource-spring-boot-starter</classpathDependencyExclude>
+                        <classpathDependencyExclude>com.baomidou:dynamic-datasource-spring-boot-starter
+                        </classpathDependencyExclude>
                         <classpathDependencyExclude>com.alibaba:druid-spring-boot-starter</classpathDependencyExclude>
                     </classpathDependencyExcludes>
                 </configuration>
