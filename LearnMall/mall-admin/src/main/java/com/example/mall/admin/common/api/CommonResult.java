@@ -1,4 +1,4 @@
-package com.example.mall.common.api;
+package com.example.mall.admin.common.api;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

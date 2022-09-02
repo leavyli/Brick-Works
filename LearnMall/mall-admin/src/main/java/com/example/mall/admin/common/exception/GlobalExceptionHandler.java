@@ -1,6 +1,6 @@
-package com.example.mall.common.exception;
+package com.example.mall.admin.common.exception;
 
-import com.example.mall.common.api.CommonResult;
+import com.example.mall.admin.common.api.CommonResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public  CommonResult<Object> handleValidException(MethodArgumentNotValidException e) {
+    public CommonResult<Object> handleValidException(MethodArgumentNotValidException e) {
         BindingResult bindingResult = e.getBindingResult();
         String message = null;
         if (bindingResult.hasErrors()) {

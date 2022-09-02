@@ -1,4 +1,4 @@
-package com.example.mall.common.api;
+package com.example.mall.admin.common.api;
 
 /**
  * 常用API返回对象接口

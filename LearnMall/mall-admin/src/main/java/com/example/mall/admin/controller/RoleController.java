@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.example.mall.admin.dto.RoleDto;
 import com.example.mall.admin.service.RoleService;
-import com.example.mall.common.api.CommonResult;
+import com.example.mall.admin.common.api.CommonResult;
 import com.example.mall.mbg.model.Admin.Role;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
