@@ -62,11 +62,10 @@ spring:
 redisConf:
   mallDev: 0
 
-#mybatis-plus:
-#  mapper-locations: classpath*:mapper/*.xml
 secure:
   ignored:
     urls:
+      - /test/**
       - /admin/**
       - /admin/test
       #      - /admin/hello
