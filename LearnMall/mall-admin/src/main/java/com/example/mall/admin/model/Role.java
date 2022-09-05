@@ -1,4 +1,4 @@
-package com.example.mall.mbg.model.Admin;
+package com.example.mall.admin.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

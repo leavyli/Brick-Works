@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mall.mbg.mapper.Admin.AdminMapper">
+<mapper namespace="com.example.mall.admin.mapper.AdminMapper">
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete
         from `admin`
         where `id` = #{id,jdbcType=BIGINT}
     </delete>
-    <select id="findAllAdminsByEmail" resultType="com.example.mall.mbg.model.Admin.Admin">
+    <select id="findAllAdminsByEmail" resultType="com.example.mall.admin.model.Admin">
         select *
         from `admin`
         where `email` = #{email,jdbcType=VARCHAR}

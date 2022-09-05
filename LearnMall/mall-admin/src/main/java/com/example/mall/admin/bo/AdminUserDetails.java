@@ -1,7 +1,7 @@
 package com.example.mall.admin.bo;
 
-import com.example.mall.mbg.model.Admin.Admin;
-import com.example.mall.mbg.model.Admin.Resource;
+import com.example.mall.admin.model.Admin;
+import com.example.mall.admin.model.Resource;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

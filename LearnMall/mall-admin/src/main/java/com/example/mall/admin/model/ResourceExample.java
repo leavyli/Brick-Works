@@ -1,4 +1,4 @@
-package com.example.mall.mbg.model.Admin;
+package com.example.mall.admin.model;
 
 import java.util.ArrayList;
 import java.util.Date;

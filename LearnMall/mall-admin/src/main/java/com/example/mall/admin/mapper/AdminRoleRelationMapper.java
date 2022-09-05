@@ -1,8 +1,8 @@
-package com.example.mall.mbg.mapper.Admin;
+package com.example.mall.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.mall.mbg.model.Admin.AdminRoleRelation;
-import com.example.mall.mbg.model.Admin.Role;
+import com.example.mall.admin.model.AdminRoleRelation;
+import com.example.mall.admin.model.Role;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

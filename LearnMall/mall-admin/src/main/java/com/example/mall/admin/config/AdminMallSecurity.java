@@ -2,7 +2,7 @@ package com.example.mall.admin.config;
 
 import com.example.mall.admin.service.AdminService;
 import com.example.mall.admin.service.ResourceService;
-import com.example.mall.mbg.model.Admin.Resource;
+import com.example.mall.admin.model.Resource;
 import com.example.mall.security.component.DynamicAccessDecisionManager;
 import com.example.mall.security.component.DynamicSecurityMetadataSource;
 import com.example.mall.security.component.DynamicSecurityService;

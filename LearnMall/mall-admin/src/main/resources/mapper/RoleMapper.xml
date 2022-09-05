@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mall.mbg.mapper.Admin.RoleMapper">
-    <resultMap id="BaseResultMap" type="com.example.mall.mbg.model.Admin.Role">
+<mapper namespace="com.example.mall.admin.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.example.mall.admin.model.Role">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="description" jdbcType="VARCHAR" property="description"/>
@@ -10,10 +10,10 @@
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="sort" jdbcType="INTEGER" property="sort"/>
     </resultMap>
-    <select id="getResourceListByRoleId" resultType="com.example.mall.mbg.model.Admin.Resource">
+    <select id="getResourceListByRoleId" resultType="com.example.mall.admin.model.Resource">
         select r.id          id,
                r.create_time createTime,
-               r.`name`      `name`,
+               r.`name`      name,
                r.url         url,
                r.description description,
                r.category_id categoryId

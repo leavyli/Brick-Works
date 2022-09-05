@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mall.mbg.mapper.Admin.ResourceMapper">
-    <resultMap id="BaseResultMap" type="com.example.mall.mbg.model.Admin.Resource">
+<mapper namespace="com.example.mall.admin.mapper.ResourceMapper">
+    <resultMap id="BaseResultMap" type="com.example.mall.admin.model.Resource">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
@@ -42,7 +42,7 @@
     <sql id="Base_Column_List">
         id, create_time, name, url, description, category_id
     </sql>
-    <select id="selectByExample" parameterType="com.example.mall.mbg.model.Admin.ResourceExample"
+    <select id="selectByExample" parameterType="com.example.mall.admin.model.ResourceExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">

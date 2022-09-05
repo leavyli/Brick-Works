@@ -1,10 +1,10 @@
 package com.example.mall.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.mall.mbg.model.Admin.Admin;
+import com.example.mall.admin.model.Admin;
 import com.example.mall.admin.dto.AdminDto;
-import com.example.mall.mbg.model.Admin.Resource;
-import com.example.mall.mbg.model.Admin.Role;
+import com.example.mall.admin.model.Resource;
+import com.example.mall.admin.model.Role;
 import com.nimbusds.jose.JOSEException;
 import org.springframework.security.core.userdetails.UserDetails;
 

@@ -1,7 +1,7 @@
 package com.example.mall.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.mall.mbg.model.Admin.Resource;
+import com.example.mall.admin.model.Resource;
 
 import java.util.List;
 

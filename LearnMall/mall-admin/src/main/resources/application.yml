@@ -94,7 +94,7 @@ logging:
 mybatis-plus:
   mapper-locations:
     - classpath*:mapper/**/*.xml
-    - classpath:mapper/*.xml
+    - classpath*:mapper/*.xml
 
 springdoc:
   swagger-ui:

@@ -1,7 +1,7 @@
 package com.example.mall.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.example.mall.mbg.model.Admin.Admin;
+import com.example.mall.admin.model.Admin;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

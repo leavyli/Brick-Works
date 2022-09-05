@@ -2,7 +2,8 @@ package com.example.mall.mbg.mapper.Admin;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.mall.admin.MallAdminApplication;
-import com.example.mall.mbg.model.Admin.AdminRoleRelation;
+import com.example.mall.admin.mapper.AdminRoleRelationMapper;
+import com.example.mall.admin.model.AdminRoleRelation;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

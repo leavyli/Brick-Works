@@ -1,8 +1,8 @@
-package com.example.mall.mbg.mapper.Admin;
+package com.example.mall.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.mall.mbg.model.Admin.Resource;
-import com.example.mall.mbg.model.Admin.ResourceExample;
+import com.example.mall.admin.model.Resource;
+import com.example.mall.admin.model.ResourceExample;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
