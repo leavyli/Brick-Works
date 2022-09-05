@@ -67,10 +67,12 @@ jwt:
 
 logging:
   level:
+    org.springframework.data.mongodb: TRACE
     #    org.springframework: TRACE
-    org.springframework.security.web.FilterChainProxy: TRACE
-    org.springframework.cache: TRACE
-    org.springframework.data.redis: TRACE
+#    org.springframework.security.web.FilterChainProxy: TRACE
+#    org.springframework.cache: TRACE
+#    org.springframework.data.redis: TRACE
+
 
 #    com.nimbusds: TRACE
 mybatis-plus:
