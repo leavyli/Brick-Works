@@ -42,6 +42,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     private final JwtTokenUtil jwtTokenUtil;
     private final ResourceService resourceService;
 
+
     private final AdminRoleRelationMapper adminRoleRelationMapper;
 
     /**
@@ -108,7 +109,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Override
     public List<Resource> getResourceList(Long adminId) {
-        return resourceService.list(new QueryWrapper<Resource>().eq("admin_id", adminId));
+        return adminRoleRelationMapper.getResourceList(adminId);
     }
 
     @Override

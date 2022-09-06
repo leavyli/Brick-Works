@@ -5,10 +5,7 @@ import com.example.mall.admin.model.TutorialDemo;
 import com.example.mall.admin.repository.TutorialDemoRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Author saino
@@ -28,5 +25,8 @@ public class TutorialDemoController {
         return CommonResult.success("save success");
     }
 
-
+    @GetMapping("/test")
+    public String testHello() {
+        return "hello";
+    }
 }
