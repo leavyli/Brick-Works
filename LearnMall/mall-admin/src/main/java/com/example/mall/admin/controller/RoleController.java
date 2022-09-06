@@ -2,10 +2,11 @@ package com.example.mall.admin.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.example.mall.admin.dto.RoleDto;
-import com.example.mall.admin.service.RoleService;
 import com.example.mall.admin.common.api.CommonResult;
+import com.example.mall.admin.dto.AssignRoleResourcesDto;
+import com.example.mall.admin.dto.RoleDto;
 import com.example.mall.admin.model.Role;
+import com.example.mall.admin.service.RoleService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
@@ -89,6 +90,13 @@ public class RoleController {
         return roleService.remove(wrapper) ?
                 CommonResult.success("角色删除成功")
                 : CommonResult.failed("角色删除失败");
+    }
+
+    @Operation(summary = "assigning role resource", description = "给角色分配资源", tags = {"role"})
+    @RequestMapping(value = "/assignResource", method = RequestMethod.POST)
+    public CommonResult assignResource(@RequestBody @Validated  AssignRoleResourcesDto dto) {
+        int count = roleService.assignResource(dto.getRoleId(), dto.getResourceIds());
+        return CommonResult.success(count);
     }
 
 }
