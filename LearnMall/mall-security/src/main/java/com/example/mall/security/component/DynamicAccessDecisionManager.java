@@ -6,7 +6,6 @@ import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -28,7 +27,7 @@ public class DynamicAccessDecisionManager implements AccessDecisionManager {
 
             String needAuthority = configAttribute.getAttribute();
             for (GrantedAuthority grantedAuthority: authentication.getAuthorities()) {
-                if (needAuthority.trim().equals(grantedAuthority)) {
+                if (needAuthority.trim().equals(grantedAuthority.toString())) {
                     return;
                 }
             }

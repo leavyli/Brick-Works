@@ -1,6 +1,6 @@
-package com.example.mall.admin.repository;
+package com.example.mall.admin.repository.mongodb;
 
-import com.example.mall.admin.model.TutorialDemo;
+import com.example.mall.admin.model.mongodb.TutorialDemo;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

@@ -1,18 +1,12 @@
 package com.example.mall.admin.controller;
 
-import com.example.mall.admin.model.TutorialDemo;
-import com.example.mall.admin.repository.TutorialDemoRepository;
+import com.example.mall.admin.model.mongodb.TutorialDemo;
+import com.example.mall.admin.repository.mongodb.TutorialDemoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import javax.annotation.PostConstruct;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -28,6 +22,11 @@ class TutorialDemoControllerTest {
         demo.setTitle("kao");
         demo.setPublished(false);
         repository.save(demo);
+        var demo2 = new TutorialDemo();
+        demo2.setDescription("hoho");
+        demo2.setTitle("kao");
+        demo2.setPublished(false);
+        repository.save(demo2);
         var ret  = repository.findByPublished(false);
         log.info("ret:{}", ret);
 

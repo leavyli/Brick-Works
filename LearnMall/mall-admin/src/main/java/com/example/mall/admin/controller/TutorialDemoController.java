@@ -1,8 +1,8 @@
 package com.example.mall.admin.controller;
 
 import com.example.mall.admin.common.api.CommonResult;
-import com.example.mall.admin.model.TutorialDemo;
-import com.example.mall.admin.repository.TutorialDemoRepository;
+import com.example.mall.admin.model.mongodb.TutorialDemo;
+import com.example.mall.admin.repository.mongodb.TutorialDemoRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
