@@ -1,9 +1,11 @@
 import React from "react";
 
-type Props = {};
+type Props = {
+  messageFunc?: () => void;
+};
 type State = {
-    value: string
-}
+  value: string;
+};
 
 export class NameForm extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -15,12 +17,19 @@ export class NameForm extends React.Component<Props, State> {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event: React.FormEvent<HTMLInputElement>) {
+//   handleChange(event: React.FormEvent<HTMLInputElement>) {
+//     this.setState({ value: event.currentTarget.value });
+//   }
+  handleChange: React.ChangeEventHandler<HTMLInputElement> = (event)=>{
     this.setState({ value: event.currentTarget.value });
   }
 
+
   handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     alert("A name was submitted: " + this.state.value);
+    if (this.props.messageFunc) {
+      this.props.messageFunc();
+    }
     event.preventDefault();
   }
 

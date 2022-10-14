@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Hello who="Jhon" />
       <ShoppingList name="five star" />
-      <NameForm />
+      <NameForm messageFunc={()=>alert("yoho")}/>
     </div>
   );
 }
