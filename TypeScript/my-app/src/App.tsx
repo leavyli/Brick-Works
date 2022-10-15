@@ -3,8 +3,10 @@ import logo from "./logo.svg";
 import "./App.css";
 import { ShoppingList, Hello } from "./ShoppingList";
 import { NameForm } from "./NameForm";
-import { PostInfo } from "./BasicContext/PostInfo";
-import { ContextApp } from "./BasicContext/ContextApp";
+import { ContextApp, PostInfo } from "./BasicContext/ContextApp";
+import {ChildComponent, ParentComponent } from "./BasicContext/Test";
+
+const AppTest = ()=> <ParentComponent Comp={ChildComponent} />
 
 function App() {
   return (
@@ -12,7 +14,9 @@ function App() {
       <Hello who="Jhon" />
       <ShoppingList name="five star" />
       <NameForm messageFunc={() => alert("yoho")} />
-      <ContextApp />
+      <ContextApp Comp={PostInfo} />
+
+      <AppTest />
     </div>
   );
 }
