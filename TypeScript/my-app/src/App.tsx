@@ -5,6 +5,7 @@ import { ShoppingList, Hello } from "./ShoppingList";
 import { NameForm } from "./NameForm";
 import { ContextApp, PostInfo } from "./BasicContext/ContextApp";
 import {ChildComponent, ParentComponent } from "./BasicContext/Test";
+import Counter from "./BaseHook/useReducerEg";
 
 const AppTest = ()=> <ParentComponent Comp={ChildComponent} />
 
@@ -15,8 +16,8 @@ function App() {
       <ShoppingList name="five star" />
       <NameForm messageFunc={() => alert("yoho")} />
       <ContextApp Comp={PostInfo} />
-
       <AppTest />
+      <Counter />
     </div>
   );
 }
