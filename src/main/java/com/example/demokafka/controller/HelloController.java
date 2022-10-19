@@ -1,7 +1,7 @@
 package com.example.demokafka.controller;
 
+import com.example.demokafka.model.StudentProto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -42,4 +42,15 @@ public class HelloController {
         });
 
     }
+
+    @GetMapping("/student")
+    public StudentProto.Student getAllStudents() {
+        StudentProto.Student student= StudentProto.Student.newBuilder()
+                .setStudentId(1)
+                .setStudentName("Denis")
+                .build();
+
+        return student;
+    }
+
 }

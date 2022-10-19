@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.example.demokafka.model";
+option java_outer_classname = "StudentProto";
+
+
+message Student {
+
+  int32 student_id = 1;
+  string student_name = 2;
+
+}
