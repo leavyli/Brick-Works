@@ -3,6 +3,7 @@ package com.example.demokafka.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
@@ -24,7 +25,9 @@ public class HelloController {
     public void sendMessage() {
 //        kafkaTemplate.send("HI", "mother fucker!!");
         String msg = "mother fucker!!";
-        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("HI", msg);
+        ProducerRecord<String, String> record = new ProducerRecord<>("HI2", "US", "JP");
+//        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("HI", record);
+        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(record);
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>(){
 
             @Override
@@ -37,5 +40,6 @@ public class HelloController {
                 log.info("Failed Send Message:= [{}] due to:{} ", msg, ex.getMessage());
             }
         });
+
     }
 }

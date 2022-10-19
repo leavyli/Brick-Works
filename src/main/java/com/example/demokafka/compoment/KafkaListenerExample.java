@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class KafkaListenerExample {
 
-    @KafkaListener(topics = {"HI"}, id = "we are demo")
+    @KafkaListener(topics = {"HI2"}, id = "we are demo")
     void listener(String data) {
         log.info(data);
     }
