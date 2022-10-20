@@ -1,15 +1,17 @@
 package com.example.demokafka.controller;
 
-import com.example.demokafka.model.StudentProto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static com.example.demokafka.protobuf.model.StudentProto.Student;
 
 /**
  * Author saino
@@ -20,12 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class HelloController {
     private final KafkaTemplate<String, String> kafkaTemplate;
+    @Qualifier("kafkaTemplateProto")
+    private final KafkaTemplate<String, Student> kafkaProtoTemplate;
 
     @GetMapping("/hello")
     public void sendMessage() {
 //        kafkaTemplate.send("HI", "mother fucker!!");
         String msg = "mother fucker!!";
-        ProducerRecord<String, String> record = new ProducerRecord<>("HI2", "US", "JP");
+        ProducerRecord<String, String> record = new ProducerRecord<>("HI3", "US", "JP");
 //        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("HI", record);
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(record);
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>(){
@@ -44,13 +48,27 @@ public class HelloController {
     }
 
     @GetMapping("/student")
-    public StudentProto.Student getAllStudents() {
-        StudentProto.Student student= StudentProto.Student.newBuilder()
+    public void getAllStudents() {
+        Student student= Student.newBuilder()
                 .setStudentId(1)
                 .setStudentName("Denis")
                 .build();
 
-        return student;
+        ProducerRecord<String, Student> record = new ProducerRecord<>("HI3", "US", student);
+        ListenableFuture<SendResult<String, Student>> future = kafkaProtoTemplate.send(record);
+
+        future.addCallback(new ListenableFutureCallback<SendResult<String, Student>>(){
+
+            @Override
+            public void onSuccess(SendResult<String, Student> result) {
+                log.info("Send Message:= [{}] with offset=[{}]", record, result.getRecordMetadata().offset());
+            }
+
+            @Override
+            public void onFailure(Throwable ex) {
+                log.info("Failed Send Message:= [{}] due to:{} ", record, ex.getMessage());
+            }
+        });
     }
 
 }

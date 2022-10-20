@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package model;
 
-option java_package = "com.example.demokafka.model";
+option java_package = "com.example.demokafka.protobuf.model";
 option java_outer_classname = "StudentProto";
 
 

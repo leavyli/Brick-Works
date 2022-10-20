@@ -3,3 +3,4 @@
 
 demo-kafka:
   bootstrap-servers: 192.168.11.8:9092
+  schema-registry: http://192.168.11.8:8084
