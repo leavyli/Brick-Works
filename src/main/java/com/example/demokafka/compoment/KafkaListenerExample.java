@@ -20,8 +20,8 @@ public class KafkaListenerExample {
         log.info(data);
     }
 
-    @KafkaListener(topics = {"HI3"}, id = "protobuf-demo")
-    void listenerStudent(String data) {
-        log.info(data);
+    @KafkaListener(topics = {"HI3"}, id = "protobuf-demo", containerFactory = "kafkaListenerProtoContainerFactory" )
+    void listenerStudent(Object data) {
+        log.info(data.toString());
     }
 }
