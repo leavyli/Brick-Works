@@ -40,6 +40,13 @@ public class KafkaProducerConfig {
         return props;
     }
 
+
+    @Bean
+    @Primary
+    public ProducerFactory<String, String> producerFactory() {
+        return new DefaultKafkaProducerFactory<>(producerConfigs());
+    }
+
     @Bean
     public Map<String, Object> producerProtoConfigs() {
         Map<String, Object> props = new HashMap<>();
@@ -58,12 +65,6 @@ public class KafkaProducerConfig {
     @Bean
     public ProducerFactory<String, StudentProto.Student> producerProtoFactory() {
         return new DefaultKafkaProducerFactory<>(producerProtoConfigs());
-    }
-
-    @Bean
-    @Primary
-    public ProducerFactory<String, String> producerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
     @Bean

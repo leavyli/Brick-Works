@@ -1,11 +1,14 @@
 package com.example.demokafka.compoment;
 
-import com.example.demokafka.protobuf.model.StudentProto;
+import com.google.protobuf.DynamicMessage;
+import com.google.protobuf.InvalidProtocolBufferException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import static com.example.demokafka.protobuf.model.StudentProto.*;
+import static com.example.demokafka.protobuf.model.StudentProto.Student;
 
 /**
  * Author saino
@@ -13,6 +16,7 @@ import static com.example.demokafka.protobuf.model.StudentProto.*;
  */
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class KafkaListenerExample {
 
     @KafkaListener(topics = {"HI2"}, id = "we are demo")
@@ -20,8 +24,9 @@ public class KafkaListenerExample {
         log.info(data);
     }
 
-    @KafkaListener(topics = {"HI3"}, id = "protobuf-demo", containerFactory = "kafkaListenerProtoContainerFactory" )
-    void listenerStudent(Object data) {
-        log.info(data.toString());
+    @KafkaListener(topics = {"HI3"}, id = "protobuf-demo", containerFactory = "kafkaListenerProtoContainerFactory")
+    void listenerStudent(ConsumerRecord<String, DynamicMessage> record) throws InvalidProtocolBufferException {
+        var s = Student.parseFrom(record.value().toByteArray());
+        log.info("studentName: {}", s.getStudentName());
     }
 }
